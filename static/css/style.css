@@ -1,0 +1,84 @@
+:root {
+    --color-blue: #103977;
+    --color-grey: #f3f3f3;
+    --color-dark-grey: #494946;
+}
+/* NAVIGATION */
+.img-brand {
+    width:75px;
+}
+
+.navbar-nav {
+    gap: 0.75rem;
+}
+.nav-link {
+    text-transform: uppercase;
+    color: var(--color-dark-grey) !important;
+}
+
+.nav-link.active {
+    color: var(--color-blue) !important;
+    text-decoration: underline;
+}
+
+
+/* CI */
+.bg-grey {
+    background-color: var(--color-grey)!important;
+}
+.bg-blue {
+    background-color: var(--color-blue) !important;
+}
+.color-white {
+    color: white !important;
+}
+
+/* BUTTONS */
+.btn-warrior {
+    display: inline-block;
+
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 0.3rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-blue) !important;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-warrior:hover {
+    background-color: white !important;
+    color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+    text-decoration: none;
+}
+
+/* TYPOGRAPHY */
+body {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 300;
+}
+
+/* FOOTER */
+.footer i{
+    font-size: 50px !important;
+}
+
+.footer .youtube {
+    color: #FF0000;
+}
+
+.footer .facebook {
+    color: #135dbd;
+}
+
+.footer .envelope {
+    color: #16a4e1;
+}
