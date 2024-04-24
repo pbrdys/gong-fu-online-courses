@@ -1,1 +1,1 @@
-web: gunicorn my_project.wsgi
+web: gunicorn gong_fu_courses.wsgi
