@@ -20,7 +20,8 @@ from home import views as home_view
 from contact import views as contact_view
 
 urlpatterns = [
-    path('', home_view.index, name="home"),
+    path("", include("home.urls"), name="home-urls"),
+    path("courses/", include("courses.urls"), name="courses-urls"),
     path("contact/", include("contact.urls"), name="contact-urls"),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),

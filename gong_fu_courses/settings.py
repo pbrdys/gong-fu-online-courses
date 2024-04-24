@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'contact',
+    'courses',
 ]
 
 SITE_ID = 1
@@ -99,6 +100,10 @@ WSGI_APPLICATION = 'gong_fu_courses.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.herokuapp.com"
+]
 
 
 # Password validation
