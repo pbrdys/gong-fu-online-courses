@@ -7,31 +7,32 @@ CATEGORY = ((0, "Basics"), (1, "Qigong"), (2, "Taiji"), (3, "Bagua"), (4, "Taiyi
 
 # Create your models here.
 class Course(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="course"
-    )
     category = models.IntegerField(choices=CATEGORY, default=0)
     featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     level = models.IntegerField(choices=LEVEL, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    order = models.IntegerField(default=0)
     
     def __str__(self):
-        return f"Course-Title: {self.title} | Author: {self.author}"
+        return f"Course-Title: {self.title}"
     
     class Meta:
         ordering = ["level"]
-    
+
 class Lesson(models.Model):
     course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, related_name="lessons"
+        Course, on_delete=models.CASCADE, related_name="lesson"
     )
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    order = models.IntegerField(default=0)
     
     def __str__(self):
         return f"Lesson-Title: {self.title}"
