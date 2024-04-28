@@ -2,7 +2,11 @@
     --color-blue: #103977;
     --color-grey: #f3f3f3;
     --color-dark-grey: #494946;
+    --foundation: #eac05ebb;
+    --intermediate: #407950bb;
+    --advanced: #1A6F8Ebb;
 }
+
 /* NAVIGATION */
 .img-brand {
     width:75px;
@@ -31,6 +35,15 @@
 }
 .color-white {
     color: white !important;
+}
+.bg-foundation {
+    background-color: var(--foundation);
+}
+.bg-intermediate {
+    background-color: var(--intermediate);
+}
+.bg-advanced {
+  background-color: var(--advanced);
 }
 
 /* BUTTONS */
@@ -66,8 +79,32 @@ body {
     font-weight: 300;
 }
 
+.title-1 {
+    font-size: 3.5rem !important;
+    line-height: 3.5rem !important;
+    font-weight: 400 !important;
+    margin-bottom: 2rem;
+}
+
+.title-2 {
+    font-size: 2rem !important;	
+    line-height: 2rem !important;
+    font-weight: 500 !important;
+    color: #103977 !important;
+    text-decoration: none !important;
+}
+
+.title-3 {
+    font-size: 1.5rem !important;	
+    line-height: 1.5rem !important;
+    font-weight: 500 !important;
+    color: #6b6b6b !important;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
 /* FOOTER */
-.footer i{
+.footer i {
     font-size: 50px !important;
 }
 
@@ -81,4 +118,63 @@ body {
 
 .footer .envelope {
     color: #16a4e1;
+}
+
+
+/* HERO */
+.hero-image {
+    width:100%;
+    max-height: 500px;
+    object-fit:cover;
+}
+
+
+/* COURSE OVERVIEW */
+.card {
+    min-height: 100% !important;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+  
+.card-img-top {
+    width: 100%;
+    min-height: 222px;
+    max-height: 222px;
+    border-top-left-radius: 0.25rem !important;
+    border-top-right-radius: 0.25rem !important;
+}
+
+.course-level {
+    position: absolute;
+    top: 25px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: 16px;
+    font-weight: 500;
+    color:white;
+}
+
+.card-title {
+    color: #103977 !important;
+    font-size: 25px !important;
+    font-family: inherit !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0px !important;
+  }
+
+.card-title-link {
+    text-decoration: none !important;
+}
+
+.card-footer {
+    border-top:none;
+    background-color: white !important;
 }

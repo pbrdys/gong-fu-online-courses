@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -6,6 +7,26 @@
 <div class="container-fluid">
 
     <h2>COURSE OVERVIEW</h2>
+
+    <div class="row">
+        {% for course in course_list %}
+        <div class="col-xs-12 col-sm-6 col-md-3 mt-3 mb-3">
+            <div class="card border-style-1">
+                <a href='{{ course.slug }}'><img class='card-img-top' src="{% static 'images/default-course-image.jpg' %}" alt=""></a>
+                    <div class='course-level bg-foundation'>{{ course.get_level_display }}</div>
+                <div class='card-header'>
+                    <a href='{{ course.slug }}' class='card-title-link'><h3 class='card-title'>{{ course.title }}</h3></a>
+                </div>
+                <div class='card-body'>
+                    <p class='card-text'>{{ course.description }}</p>
+                </div>
+                <div class='card-footer'>
+                    <a href='{{ course.slug }}' class='btn-warrior'>let's go</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 </div>
 <!-- index.html content ends here -->
