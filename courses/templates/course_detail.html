@@ -17,4 +17,9 @@
     </div>
 </div>
 
+<div class="container-fluid">
+    <!-- using the | safe keyword the content will be rendered as html properly -->
+    {{ course.content | safe }}
+</div>
+
 {% endblock content %}
