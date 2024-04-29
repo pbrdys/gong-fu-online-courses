@@ -120,6 +120,12 @@ body {
     color: #16a4e1;
 }
 
+/* CONTAINER */ 
+.no-padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
 
 /* HERO */
 .hero-image {
@@ -177,4 +183,40 @@ body {
 .card-footer {
     border-top:none;
     background-color: white !important;
+}
+
+
+/* COURSE DETAIL */ 
+.masthead {
+    padding-left: 0px !important;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    height: 33vh;
+    width: 100%;
+}
+
+.masthead-text {
+    background-color: var(--color-blue);
+    color: white;
+    position: relative;
+}
+
+.masthead-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.masthead-image:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 90%;
+    height: 100%;
+    width: 150%;
+    background: var(--color-blue);
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    transform: skew(15deg);
+    z-index: 100;
 }
