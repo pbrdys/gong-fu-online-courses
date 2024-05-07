@@ -11,11 +11,13 @@ class course_overview(generic.ListView):
 def course_detail(request, slug):
     queryset = Course.objects.all()
     course = get_object_or_404(queryset, slug=slug)
+    lessons = course.lessons.all()
     
     return render(
         request,
         "course_detail.html",
         {
-            "course": course
+            "course": course,
+            "lessons": lessons
         }
     )
