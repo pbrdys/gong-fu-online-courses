@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views as home_view
 from contact import views as contact_view
+from courses import views as course_views
 
 urlpatterns = [
     path("", include("home.urls"), name="home-urls"),

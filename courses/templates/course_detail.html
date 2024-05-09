@@ -11,7 +11,11 @@
                 <p> {{ course.description }} </p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/default-course-image.jpg' %}" class="scale" alt="placeholder">
+                {% if "placeholder" in course.featured_image.url %}
+                    <img class="card-img-top" src="{% static 'images/default-course-image.jpg' %}" alt="placeholder image">
+                {% else %}
+                    <img class="card-img-top" src=" {{ course.featured_image.url }}" alt="{{ course.title }}">
+                {% endif %}    
             </div>
         </div>
     </div>

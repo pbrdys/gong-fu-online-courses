@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Course
+from .forms import CourseForm
+from django.contrib import messages
 
 # Create your views here.
 class course_overview(generic.ListView):
@@ -18,6 +20,30 @@ def course_detail(request, slug):
         "course_detail.html",
         {
             "course": course,
-            "lessons": lessons
+            "lessons": lessons,
+        }
+    )
+    
+    
+def course_add(request):
+    # Handle the POST request from the course form
+    if request.method == "POST":
+        course_form = CourseForm(data=request.POST)
+        if course_form.is_valid():
+            course = course_form.save(commit=False)
+            course.save()
+            # display success message string:
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Course successfully added'
+            )
+            
+    course_form = CourseForm()
+    
+    return render(
+        request,
+        "course_add.html",
+        {
+            "course_form": course_form,
         }
     )
