@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from .models import Course
 from .forms import CourseForm
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 class course_overview(generic.ListView):
@@ -47,3 +48,11 @@ def course_add(request):
             "course_form": course_form,
         }
     )
+    
+def course_delete(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    
+    course.delete()
+    messages.add_message(request, messages.SUCCESS, 'Course deleted!')
+    
+    return HttpResponseRedirect(reverse("course_overview"))
