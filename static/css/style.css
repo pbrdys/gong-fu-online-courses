@@ -1,10 +1,14 @@
 :root {
     --color-blue: #103977;
+    --color-red: #de0a0abb;
+    --color-yellow: #eac05ebb;
+    --color-green: #407950bb;
     --color-grey: #f3f3f3;
-    --color-dark-grey: #494946;
+    --color-dark-grey: #59605f;
     --foundation: #eac05ebb;
     --intermediate: #407950bb;
     --advanced: #1A6F8Ebb;
+    --color-white: #ffffffe0;
 }
 
 /* NAVIGATION */
@@ -28,7 +32,10 @@
 
 /* CI */
 .bg-grey {
-    background-color: var(--color-grey)!important;
+    background-color: var(--color-grey) !important;
+}
+.bg-dark-grey {
+    background-color: var(--color-dark-grey) !important;
 }
 .bg-blue {
     background-color: var(--color-blue) !important;
@@ -49,7 +56,6 @@
 /* BUTTONS */
 .btn-warrior {
     display: inline-block;
-
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 1.5;
@@ -61,18 +67,52 @@
     border-radius: 0.3rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     padding: 0.5rem 1rem;
-    background-color: var(--color-blue) !important;
-    color: white;
     text-decoration: none;
 }
-
-.btn-warrior:hover {
+/* Blue */
+.btn-warrior-color-blue {
+    background-color: var(--color-blue) !important;
+    color: white;
+}
+.btn-warrior-color-blue:hover {
     background-color: white !important;
     color: var(--color-blue);
     border: 1px solid var(--color-blue);
     text-decoration: none;
 }
-
+/* Yellow */
+.btn-warrior-color-yellow {
+    background-color: var(--color-yellow) !important;
+    color: white;
+}
+.btn-warrior-color-yellow:hover {
+    background-color: white !important;
+    color: var(--color-yellow);
+    border: 1px solid var(--color-yellow);
+    text-decoration: none;
+}
+/* Red */
+.btn-warrior-color-red {
+    background-color: var(--color-red) !important;
+    color: white;
+}
+.btn-warrior-color-red:hover {
+    background-color: white !important;
+    color: var(--color-red);
+    border: 1px solid var(--color-red);
+    text-decoration: none;
+}
+/* Green */ 
+.btn-warrior-color-green {
+    background-color: var(--color-green) !important;
+    color: white;
+}
+.btn-warrior-color-green:hover {
+    background-color: white !important;
+    color: var(--color-green);
+    border: 1px solid var(--color-green);
+    text-decoration: none;
+}
 /* TYPOGRAPHY */
 body {
     font-size: 1.25rem; /* 20px */
@@ -245,4 +285,13 @@ body {
     width: 100%;
     max-width:100%;
     height: 100%;
+}
+
+/* COURSE FORM */
+.form {
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 1rem;
 }
