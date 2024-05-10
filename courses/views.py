@@ -49,6 +49,26 @@ def course_add(request):
         }
     )
     
+def course_edit(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    if request.method == "POST":
+        course_form = CourseForm(data=request.POST, instance=course)
+        
+        if course_form.is_valid():
+            course_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Course Updated!')
+            return HttpResponseRedirect(reverse('course_overview'))
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating course!')
+    else:
+        # If it's a GET request, initialize the form with the instance data
+        course_form = CourseForm(instance=course)
+
+    return render(request, 'course_edit.html', {'course_edit_form': course_form, 'course': course})
+        
+    
+    
+    
 def course_delete(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     
