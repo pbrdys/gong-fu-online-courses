@@ -22,8 +22,11 @@ from courses import views as course_views
 
 urlpatterns = [
     path("", include("home.urls"), name="home-urls"),
+    path("custom/", include("custom_pages.urls"), name="custom-pages-urls"),
     path("courses/", include("courses.urls"), name="courses-urls"),
     path("contact/", include("contact.urls"), name="contact-urls"),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
 ]
+
+handler404 = 'custom_pages.views.custom_404'

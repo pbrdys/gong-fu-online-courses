@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center mt-5">
+    <div class="col-md-6">
+        <div class="access-denied-container">
+            <h1>Access Denied</h1>
+            <p>You do not have permission to view this page.</p>
+            <a href="/" class="btn-warrior btn-warrior-color-red mt-4">Go to Homepage</a>
+            <a href="{% url 'account_login' %}" class="btn-warrior btn-warrior-color-red mt-4">Log in</a>
+            <a href="{% url 'account_signup' %}" class="btn-warrior btn-warrior-color-red mt-4">Register</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extras %}
+    <script src="{% static 'js/course.js' %}"></script>
+{% endblock %}
