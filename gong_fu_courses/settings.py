@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'courses',
     'crispy_forms',
     'crispy_bootstrap5',
+    'custom_pages',
 ]
 
 SITE_ID = 1
