@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-LEVEL = ((0, "Foundation"), (1, "Intermediate"), (1, "Advanced"))
+LEVEL = ((0, "Foundation"), (1, "Intermediate"), (2, "Advanced"))
 CATEGORY = ((0, "Basics"), (1, "Qigong"), (2, "Taiji"), (3, "Bagua"), (4, "Taiyi"), (5, "Sword"), (6, "Gun"))
 
 # Create your models here.

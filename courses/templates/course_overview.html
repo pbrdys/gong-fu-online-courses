@@ -30,7 +30,13 @@
                         <img class="card-img-top" src=" {{ course.featured_image.url }}" alt="{{ course.title }}">
                     {% endif %}
                 </a>
+                {% if course.get_level_display == "Foundation" %}
                     <div class='course-level bg-foundation'>{{ course.get_level_display }}</div>
+                {% elif course.get_level_display == "Intermediate" %}
+                    <div class='course-level bg-intermediate'>{{ course.get_level_display }}</div>
+                {% else %}
+                    <div class='course-level bg-advanced'>{{ course.get_level_display }}</div>
+                {% endif %}
                 <div class='card-header'>
                     <a href='{{ course.slug }}' class='card-title-link'><h3 class='card-title'>{{ course.title }}</h3></a>
                 </div>
@@ -43,8 +49,9 @@
                             <a href='{{ course.slug }}' class='btn-warrior btn-warrior-color-blue'>let's go</a>
                             {% if user.is_superuser%}
                                 <div class="ml-1">
+                                    <!-- EDIT COURSE -->
                                     <a href='edit_course/{{ course.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' course_id="{{ course.id }}"><i class="fas fa-edit"></i></a>
-                                    {% comment %} <button class="btn-warrior btn-warrior-color-yellow ml-1 btn-edit" course_id="{{ course.id }}"><i class="fas fa-edit"></i></button> {% endcomment %}
+                                    <!-- DELETE COURSE -->
                                     <button class="btn-warrior btn-warrior-color-red btn-delete" course_id="{{ course.id }}"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             {% endif %}
