@@ -1,12 +1,399 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<!-- index.html content starts here -->
+<!-- HERO IMAGE -->
+<div class="row">
+    <div class="col-d-12">
+        <img src="{% static 'images/hero-homepage.jpg' %}" class="hero-image" alt="Hero Image - Way of the Warrior"/>
+    </div>
+</div>
+
+<!-- MAIN CONTAINER -->
 <div class="container-fluid">
+    <section id="introduction">
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <h1 class="title-1">Master the Art of Gong Fu</h1>
+                <h2 class="title-3">Explore Our Comprehensive Online Video Courses</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center" style="display:block;">
+                <div>
+                    Discover and study the ancient practices of internal martial arts, 
+                    such as Gong Fu, Ba Gua, Qi Gong and Taiji, from the Wudang Mountains through our online video courses.<br/><br/>
+                    <b>Everything starts with ONE simple STEP</b>.
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-8 text-center mb-3" style="display:block;">
+                <a href="/register/" class="btn-warrior btn-warrior-color-blue">Register here</a>
+            </div>
+        </div>
+    </section>
 
-    <h2>HOMEPAGE</h2>
+    <hr class="hr-warrior" style="margin:auto"/>
 
+    <!-- THE OFFERING -->
+    <section id="offering">
+        <div class="row mt-5"> 
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="title-1">What's waiting for you?</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-chalkboard-teacher service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-1.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">Step-by-Step Guidance</h5>
+                            <p class="card-text">Perfect for all skill levels.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-palette service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-2.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">7 Gong Fu Styles</h5>
+                            <p class="card-text">Taiji, Bagua, Tai Yi, Longpole, Sword, Qi Gong, Basics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-video service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-3.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">Video-Based Lessons</h5>
+                            <p class="card-text">Access over 200 instructional videos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-user-check service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-4.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">Personalized Support</h5>
+                            <p class="card-text">Submit your practice videos for expert feedback.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-comments service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-1.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">Close Communication</h5>
+                            <p class="card-text">Easy access to your instructors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 box-shadow-1">
+                        <div class="card-body">
+                            {% comment %} <i class="fas fa-video service-icon mb-3"></i> {% endcomment %}
+                            <img src="{% static '/images/icon-2.png' %}" alt="" class="service-icon"/>
+                            <h5 class="card-title">Live Online Classes</h5>
+                            <p class="card-text">Join monthly sessions via Google Meet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr-warrior" style="margin:auto"/>
+
+    <!-- THE TRAINING -->
+    <section id="training">
+        <div class="row"> 
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="title-1">The Training</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div style="display: block;">
+                    Your training is build on 3 levels of difficulty. 
+                    Each level is designed for a duration of round about 1 year.
+                    It takes some time to get some gong fu (hard work / skill),
+                    therefore our teaching is no consumption or fast food approach.
+                    Instead, we provide you with a well-founded education in the
+                    martial arts of Wudang Gong Fu, where you will learn the most fundamental 
+                    basics in an easy step-by-step approach. 
+                    The difficulty and compexity of the exercises and forms you will learn, 
+                    are rising from one level to another. 
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <!-- Foundation -->
+            <div class="col-xs-12 col-sm-6 col-md-4 mt-2">
+                <div class="card" style="border-top-right-radius: 15px; font-weight: 500;">
+                    <div class="foundation-card-cover">
+                        <div class="card-header card-header-color-foundation">
+                            <h3 class="card-title">Level 1 - Foundation</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="title-3">Duration</div>
+                            <p>
+                                12 months
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 1 - 3</div>
+                            <p>
+                                You will have <b>access</b> to <b>Gong Fu Basics</b> and <b>Qi Gong</b> courses only. 
+                                This courses contain the most fundamental exercises for everyone who wants to practice this art.
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 4 - 12</div>
+                            <p>
+                                You will have <b>access</b> to the foundation courses of every style like 
+                                <b>Taiji, Bagua, Tai Yi, Xuan Wu Gun, Sword</b>.
+                                Those courses contain fundamental exercises for every single style.
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">After those 12 months</div>
+                            <p>
+                                You will gain access to the next level. (<b>Intermediate</b>)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Intermediate -->
+            <div class="col-xs-12 col-sm-6 col-md-4 mt-2">
+                <div class="card border-style-3" style="border-top-right-radius: 15px; font-weight: 500;">
+                    <div class="intermediate-card-cover">
+                        <div class="card-header card-header-color-intermediate">
+                            <h3 class="card-title text-color-1">Level 2 - Intermediate</h3>
+                        </div>
+                        <div class="card-body" style="padding:2% !important;">
+                            <div class="title-3">Duration</div>
+                            <p>
+                                12 months
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 1 - 3</div>
+                            <p>
+                                You get access to <b>Gong Fu Basics</b> and <b>Qi Gong</b> course for the <b>Intermediate - Level</b>.
+                                In this courses you will learn more advanced exercises to work on your gong fu.
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 4 - 12</div>
+                            <p>
+                                You will have <b>access</b> to the <b>intermediate</b> courses of every style like 
+                                <b>Taiji, Bagua, Tai Yi, Xuan Wu Gun, Sword</b>.
+                                Those courses contain for example more advanced basics and forms for every single style. 
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">After those 12 months</div>
+                            <p>
+                                You will gain access to the next level. (<b>Advanced</b>)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Advanced -->
+            <div class="col-xs-12 col-sm-6 col-md-4 mt-2">
+                <div class="card border-style-3" style="border-top-right-radius: 15px; font-weight: 500;">
+                    <div class="advanced-card-cover">
+                        <div class="card-header card-header-color-advanced">
+                            <h3 class="card-title text-color-1">Level 3 - Advanced</h3>
+                        </div>
+                        <div class="card-body" style="padding:2% !important;">
+                            <div class="title-3">Duration</div>
+                            <p>
+                                12 months
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 1 - 3</div>
+                            <p>
+                                You get access to <b>Gong Fu Basics</b> and <b>Qi Gong</b> course for the <b>Advanced - Level</b>.
+                                In this courses you will learn even more advanced exercises to work on your gong fu.
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">Month 4 - 12</div>
+                            <p>
+                                You will have <b>access</b> to the <b>advanced</b> courses of every style like 
+                                <b>Taiji, Bagua, Tai Yi, Xuan Wu Gun, Sword</b>.
+                                Those courses will contain advanced forms and practices.
+                            </p>
+                            <hr class="hr-warrior" style="margin: auto;" />
+                            <div class="title-3">After those 12 months</div>
+                            <p>
+                                From this point on, the journey may begin. You will see ...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 	
+    </section>
+    <!-- THE STYLES -->
+    <section id="styles">
+        <div class="row mt-5"> 
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="title-1">The Styles</h2>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12 lead" style="display:block;">
+                Wudang Kung Fu is a martial arts tradition deeply rooted in Taoist philosophy and Chinese culture. <br>
+                It is known for its graceful, flowing movements and emphasis on internal strength, balance, and harmony.<br><br>
+                <b><u>There are several styles of Wudang Kung Fu, each with its own unique characteristics and focus:</u></b>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <!-- Nei Gong -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img src="{% static 'images/qigong-1.jpg' %}" class="card-img-top" alt="Nei Gong - Inner Work"/>
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Nei Gong</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Inner work includes all meditation, qigong, and practices of self-cultivation.
+                            The bottom line is: <b>there is no inner or outer work</b>.
+                            Training the body is training the mind, training the mind is training the body is...
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Taiji Quan -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/taiji-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Taiji Quan</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            An art of smooth and harmonious movements, flowing and yielding like water.
+                            Movement in stillness, stillness in motion.
+                            Yin and Yang are in harmony.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bagua Zhang -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/bagua-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Bagua Zhang</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Hand of the 8 Trigrams the art of walking in circles. 
+                            The essential feature of the Bagua is the agile step work by running in circles and developing spiral-strength 
+                            within the movements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Xing Yi Quan -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/xingyi-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Xing Yi Quan</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Fist of Form and Mind, originally derived from spear techniques, 
+                            Xing Yi is a very straightforward and explosive forward-pointing 
+                            style and is therefore traditionally learned as a complement to Bagua Zhang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tai Yi Zhang -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/taiyi-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Tai Yi Zhang</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            In Tai Yi, also called "Liang Yi" (two poles), the Yin and Yang aspects are separated within the expression of the movement.
+                            Slow, soft movements flow into dynamic, explosive punches, kicks and stabs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Xuan Wu Gun -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/xuan-wu-gun-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Xuan Wu Gun</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            The stick blows in the wind, so light, so delicate, but when it strikes, it is destructive, like the mountain-shifting, shattering waves of the ocean.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Wudang Sword -->
+            <div class="col-xs-6 col-sm-4 col-md-3 mt-4">
+                <div class="card border-style-3">
+                    <img class="card-img-top" src="{% static 'images/sword-1.jpg' %}">
+                    <div class="card-header">
+                        <h3 class="card-title text-color-1">Wudang Sword</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Wudang is famous for its swordsmanship. 
+                            The sword is double-edged... like the human mind... it can be used to destroy or to heal/help. 
+                            Practicing with the sword means sharpening the mind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- START YOUR JOURNEY -->
+    <section id="register">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="title-1">Start your journey now</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center" style="display:block;">
+                <div>
+                    Join the 5 Dragon Online School and learn Gong Fu from whereever you are.<br>
+                    The first 7 days after registration, are completely free!
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8 text-center" style="display:block;">
+                <a href="/register/" class="btn-warrior btn-warrior-color-blue">Register here</a>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-8 text-center" style="display:block;">
+                <div>
+                    If you have further questions, don't hesitate to contact us: <u>online@5drachenschule.de</u><br>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <!-- index.html content ends here -->
 {% endblock %}
