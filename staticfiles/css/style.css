@@ -1,10 +1,10 @@
 :root {
-    --color-blue: #103977;
+    --color-blue:#103977;
     --color-red: #de0a0abb;
     --color-yellow: #eac05ebb;
     --color-green: #407950bb;
     --color-grey: #f3f3f3;
-    --color-dark-grey: #59605f;
+    --color-dark-grey: #8a8a8a;
     --foundation: #eac05ebb;
     --intermediate: #407950bb;
     --advanced: #1A6F8Ebb;
@@ -175,7 +175,7 @@ body {
 }
 
 
-/* COURSE OVERVIEW */
+/* CARDS */
 .card {
     min-height: 100% !important;
 }
@@ -294,4 +294,86 @@ body {
     padding: 2rem;
     margin: 2rem;
     border-radius: 1rem;
+}
+
+/* DESIGN ELEMENTS */
+.hr-warrior {
+    border-top: 1px solid var(--color-dark-grey);
+    width:80%;
+    margin-top:2rem !important;
+    margin-bottom:2rem !important;
+}
+
+.li-yellow li{
+    margin: 0;
+    padding: 10px 0 0 60px;
+    list-style: none;
+    background-image: url('/static/images/li-beginner.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+.li-green li{
+    margin: 0;
+    padding: 10px 0 0 60px;
+    list-style: none;
+    background-image: url('/static/images/li-intermediate.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+.li-blue li{
+    margin: 0;
+    padding: 10px 0 0 60px;
+    list-style: none;
+    background-image: url('/static/images/li-advanced.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+
+/* FOUNDATION CARD COVER */
+.card-header-color-foundation {
+    background-color: var(--foundation) !important;
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.card-header-color-intermediate {
+    background-color: var(--intermediate) !important;
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.card-header-color-advanced {
+    background-color: var(--advanced) !important;
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.foundation-card-cover {
+    position: relative; 
+    width: 100%;
+    display: block;
+}
+  
+.foundation-card-cover:before {
+    content: "";
+    /*background-image: url('/staticfiles/images/taiyi-1.jpg') !important;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.4;
+}
+  
+.foundation-card-cover p, h4, ol, ol li , div{
+    position: relative;
 }
