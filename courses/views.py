@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from .models import Course
-from .forms import CourseForm
+from .models import Course, Lesson
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -58,6 +57,7 @@ def course_add(request):
     else:
         return access_denied(request)
     
+    
 def course_edit(request, course_id):
     if user_has_permission(request.user):
         course = get_object_or_404(Course, pk=course_id)
@@ -78,8 +78,7 @@ def course_edit(request, course_id):
     else:
         return access_denied(request) 
     
-    
-    
+     
 def course_delete(request, course_id):
     if user_has_permission(request.user):
         course = get_object_or_404(Course, pk=course_id)
@@ -88,5 +87,16 @@ def course_delete(request, course_id):
         messages.add_message(request, messages.SUCCESS, 'Course deleted!')
         
         return HttpResponseRedirect(reverse("course_overview"))
+    else:
+        return access_denied(request)
+
+
+def lesson_detail(request, course_slug, lesson_slug):
+    course = get_object_or_404(Course, slug=course_slug)
+    lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
+    return render(request, 'lesson_detail.html', {'lesson': lesson})
+
+
+        )
     else:
         return access_denied(request)

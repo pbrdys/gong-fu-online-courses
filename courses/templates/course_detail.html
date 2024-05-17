@@ -28,6 +28,11 @@
 
 <!-- LESSONS / COURSE CURRICULUM -->
 <div class="container-fluid px-5 mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <a href="{% url 'lesson_add' course.slug %}" class="btn-warrior btn-warrior-color-green"><i class="fas fa-plus"></i> new Lesson</a>
+        </div>
+    </div>
         <div class="row">
             <div class="col-md-12">
                 <span class="title-3">Course Curriculum</span>
@@ -46,6 +51,10 @@
                             </div>
                             <div class="padding-right-1_5">
                                 <a href="{{ lesson.slug }}" class="btn-warrior btn-warrior-color-blue">Start</a>
+                                <!-- EDIT LESSON -->
+                                <a href='edit_lesson/{{ lesson.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' lesson_id="{{ lesson.id }}"><i class="fas fa-edit"></i></a>
+                                <!-- DELETE LESSON -->
+                                <button class="btn-warrior btn-warrior-color-red btn-delete" lesson_id="{{ lesson.id }}"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                         {% if not forloop.last %}

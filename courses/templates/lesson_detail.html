@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="course-banner-container">
+                    <img class="course-banner" src="{% static 'images/top-frame.png' %}" alt="placeholder image">
+                    <div class="course-title-overlay">
+                        <h1 class="title-1">{{ lesson.title }}</h1>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid px-5">
+    <!-- using the | safe keyword the content will be rendered as html properly -->
+    {{ lesson.body | safe }}
+</div>
+
+
+{% endblock content %}
