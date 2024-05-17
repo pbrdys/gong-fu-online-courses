@@ -1,6 +1,6 @@
-const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("deleteConfirm");
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteCourseModal"));
+const deleteButtons = document.getElementsByClassName("btn-delete-course");
+const deleteConfirm = document.getElementById("deleteCourseConfirm");
 
 /**
 * Initializes deletion functionality for the provided delete buttons.
@@ -13,9 +13,9 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 * the user for confirmation before deletion.
 */
 for (let button of deleteButtons) {
-    button.addEventListener("click", (e) => {
-      let courseId = e.target.getAttribute("course_id");
-      deleteConfirm.href = `delete_course/${courseId}`;
-      deleteModal.show();
-    });
-  }
+  button.addEventListener("click", (e) => {
+    let courseId = e.target.getAttribute("course_id");
+    deleteConfirm.href = `delete_course/${courseId}`;
+    deleteModal.show();
+  });
+}

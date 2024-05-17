@@ -126,3 +126,45 @@ def lesson_add(request, course_slug):
         )
     else:
         return access_denied(request)
+    
+
+def lesson_edit(request, course_slug, lesson_slug):
+    if user_has_permission(request.user):
+        course = get_object_or_404(Course, slug=course_slug)
+        lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
+        
+        if request.method == "POST":
+            lesson_form = LessonForm(data=request.POST, instance=lesson)
+            if lesson_form.is_valid():
+                lesson_form.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Lesson successfully updated'
+                )
+                return redirect('lesson_detail', course_slug=course_slug, lesson_slug=lesson_slug)
+        else:
+            lesson_form = LessonForm(instance=lesson)
+        
+        return render(
+            request,
+            'lesson_edit.html',
+            {
+                'lesson_form': lesson_form,
+                'course': course,
+                'lesson': lesson
+            }
+        )
+    else:
+        return access_denied(request)
+    
+
+def lesson_delete(request, lesson_id, course_slug):
+    if user_has_permission(request.user):
+        lesson = get_object_or_404(Lesson, pk=lesson_id)
+        
+        lesson.delete()
+        messages.add_message(request, messages.SUCCESS, 'Lesson deleted!')
+        
+        return redirect('course_detail', slug=course_slug)
+    else:
+        return access_denied(request)
