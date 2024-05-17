@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from .models import Course, Lesson
+from .forms import CourseForm, LessonForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -97,6 +98,31 @@ def lesson_detail(request, course_slug, lesson_slug):
     return render(request, 'lesson_detail.html', {'lesson': lesson})
 
 
+def lesson_add(request, course_slug):
+    if user_has_permission(request.user):
+        course = get_object_or_404(Course, slug=course_slug)
+        
+        if request.method == "POST":
+            lesson_form = LessonForm(data=request.POST)
+            if lesson_form.is_valid():
+                lesson = lesson_form.save(commit=False)
+                lesson.course = course
+                lesson.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Lesson successfully added'
+                )
+                return redirect('course_detail', slug=course_slug)
+        else:
+            lesson_form = LessonForm()
+        
+        return render(
+            request,
+            "lesson_add.html",  # Ensure the template path is correct
+            {
+                "lesson_form": lesson_form,
+                "course": course,
+            }
         )
     else:
         return access_denied(request)
