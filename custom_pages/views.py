@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseForbidden
 
 # Custom permission check function
 def user_has_permission(user):
@@ -7,7 +8,8 @@ def user_has_permission(user):
 
 # access denied
 def access_denied(request):
-    return render(request, 'access_denied.html')
+    response = render(request, 'access_denied.html')
+    return HttpResponseForbidden(content=response.content, content_type='text/html')
 
 
 # custom 404 view
