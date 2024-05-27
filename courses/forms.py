@@ -14,4 +14,4 @@ class CourseForm(forms.ModelForm):
 class LessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
-        fields = ('title', 'slug', 'body', 'order')
+        fields = ('title', 'slug', 'video_url', 'description', 'recommendation', 'order')
