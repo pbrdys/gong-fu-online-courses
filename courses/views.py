@@ -45,6 +45,11 @@ def course_add(request):
                     request, messages.SUCCESS,
                     'Course successfully added'
                 )
+            else:
+                messages.add_message(
+                    request, messages.ERROR,
+                    'Form not valid'
+                )
                 
         course_form = CourseForm()
         
