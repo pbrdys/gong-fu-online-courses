@@ -4,19 +4,63 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 p-0">
-            <div class="course-banner-container">
-                    <img class="course-banner" src="{% static 'images/top-frame.png' %}" alt="placeholder image">
-                    <div class="course-title-overlay">
-                        <h1 class="title-1">{{ lesson.title }}</h1>
-                    </div>
-            </div>
+            <img class="lesson-banner" src="{% static 'images/top-frame.png' %}" alt="placeholder image">
         </div>
     </div>
 </div>
 
-<div class="container-fluid px-5">
-    <!-- using the | safe keyword the content will be rendered as html properly -->
-    {{ lesson.body | safe }}
+<div class="container-fluid lesson-title-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title-1">{{ lesson.title }}</h1>
+            <hr class="hr-warrior"/>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid lesson-content-container">
+    <!-- Embedded Vimeo -->
+    <!-- ##################################################### -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="video-container">
+                <iframe src="{{ lesson.video_url }}" 
+                        title="{{ lesson.title }} Video" 
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- DESCRIPTION -->
+    <!-- ##################################################### -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h3 class="title-3">Description</h3>
+            <p class="lead">
+                {{ lesson.description  |safe }}
+            </p>
+        </div>
+    </div>
+    <!-- RECOMMENDATION -->
+    <!-- ##################################################### -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h3 class="title-3">Recommendation</h3>
+            <p class="lead">
+                {{ lesson.recommendation |safe }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <img class="lesson-banner" src="{% static 'images/bottom-frame.png' %}" alt="placeholder image">
+        </div>
+    </div>
 </div>
 
 
