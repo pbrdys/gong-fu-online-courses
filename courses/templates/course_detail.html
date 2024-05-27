@@ -50,9 +50,12 @@
                                 <a href="{{ lesson.slug }}" class="lesson-link">{{ lesson.title }}</a>
                             </div>
                             <div class="padding-right-1_5">
-                                <a href="{{ lesson.slug }}" class="btn-warrior btn-warrior-color-blue">Start</a>
+                                <!-- START LESSON -->
+                                <a href="{{ lesson.slug }}" class="btn-warrior btn-warrior-color-blue">
+                                    <i class="fas fa-play start-icon"></i>
+                                </a>
                                 <!-- EDIT LESSON -->
-                                <a href="{% url 'lesson_edit' course.slug lesson.slug %}" class="btn-warrior btn-warrior-color-yellow ml-1 btn-edit">
+                                <a href="{% url 'lesson_edit' course.slug lesson.slug %}" class="btn-warrior btn-warrior-color-yellow btn-edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <!-- DELETE LESSON -->
