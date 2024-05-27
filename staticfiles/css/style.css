@@ -1,6 +1,6 @@
 :root {
     --color-blue:#103977;
-    --color-red: #de0a0abb;
+    --color-red: #b80707e4;
     --color-yellow: #eac05ebb;
     --color-green: #407950bb;
     --color-grey: #f3f3f3;
@@ -9,6 +9,8 @@
     --intermediate: #407950bb;
     --advanced: #1A6F8Ebb;
     --color-white: #ffffffe0;
+    --color-light-black: #333333; /* Light black */;
+    --color-black: #000000; /* Dark black */;
 }
 
 /* NAVIGATION */
@@ -126,6 +128,12 @@ body {
     margin-bottom: 2rem;
 }
 
+@media screen and (max-width:576px) {
+    .title-1 {
+        font-size: 2.5rem !important;
+    }
+}
+
 .title-2 {
     font-size: 2rem !important;	
     line-height: 2rem !important;
@@ -226,41 +234,6 @@ body {
 }
 
 
-/* COURSE DETAIL */ 
-.masthead {
-    padding-left: 0px !important;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: var(--color-blue);
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: var(--color-blue);
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
 /* COURSE DETAIL - VIDEO DISPLAY */
 .video-container {
     width: 100%;
@@ -335,7 +308,7 @@ body {
 }
 
 
-/* FOUNDATION CARD COVER */
+/* CUSTOM CARD HEADER */
 .card-header-color-foundation {
     background-color: var(--foundation) !important;
     border-top-right-radius: 15px !important;
@@ -354,26 +327,154 @@ body {
     border-bottom-right-radius: 15px !important;
 }
 
-.foundation-card-cover {
-    position: relative; 
-    width: 100%;
-    display: block;
+/* ACCESS DENEIED */
+.access-denied-container {
+    text-align: center;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 5px 4px 10px rgba(0,0,0,0.1);
 }
-  
-.foundation-card-cover:before {
-    content: "";
-    /*background-image: url('/staticfiles/images/taiyi-1.jpg') !important;*/
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.4;
+.access-denied-container h1 {
+    font-size: 3rem;
+    color: var(--color-red);
 }
-  
-.foundation-card-cover p, h4, ol, ol li , div{
+
+/* LOGIN, SIGN UP */
+.form-fields-container {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 5px 4px 10px rgba(0,0,0,0.1);
+}
+.form-fields-container h1 {
+    font-size: 3rem;
+    color: var(--color-blue);
+}
+
+/* COURSE DETAILS */
+.course-banner-container {
     position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.course-banner {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.course-title-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+/* HOMEPAGE - SERVICES */
+.service-icon {
+    font-size: 50px;
+    color: var(--color-blue);
+}
+
+.service-icon {
+    width: 200px;
+    margin-top: -20px;
+}
+
+/* BORDERS / SHADOWS */
+.box-shadow-1 {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* COURSE CURRICULUM */
+.border-radius-top {
+    border-top: 1px solid var(--color-dark-grey);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.border-radius-bottom {
+    border-bottom: 1px solid var(--color-dark-grey);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.lesson-link {
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: var(--color-light-black);
+}
+
+.lesson-link:hover {
+    margin-left: 0.5rem;
+    text-decoration: underline;
+    color: var(--color-black);
+}
+
+.padding-left-1_5 {
+    padding-left: 1.5rem;
+}
+
+.padding-right-1_5 {
+    padding-right: 1.5rem;
+}
+
+/* MESSAGES */
+.message-box {
+    border-top: 1px solid var(--color-green) !important;
+    border-bottom: 1px solid var(--color-green) !important;
+    border-radius: 15px !important;  
+    text-align: center;
+    margin-block: 1rem;
+}
+
+/* CONTACT FORM */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-send-btn {
+    width: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#id_name {
+    width: 75%;
+}
+
+#id_email {
+    width: 75%;
+}
+
+#id_subject {
+    width: 75%;
+}
+
+#signup_form {
+    display:flex;
+    flex-direction: column;
+}
+
+#signup_form input {
+    width:100%;
+}
+
+#signup_form button {
+    width: 33%;
+    text-align: center;
 }
