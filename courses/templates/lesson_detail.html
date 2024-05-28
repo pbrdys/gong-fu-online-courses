@@ -23,14 +23,21 @@
     <!-- ##################################################### -->
     <div class="row">
         <div class="col-md-12">
-            <div class="video-container">
-                <iframe src="{{ lesson.video_url }}" 
-                        title="{{ lesson.title }} Video" 
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen></iframe>
+            {% if not lesson.video_url %}
+            <div class="text-center">
+                <img style="width:50%;" src="{% static 'images/wuji-symbol.png'%}">
+                <h3 class="mt-3 mb-5">No Video Embedded yet</h3>
             </div>
+            {% else %}
+                <div class="video-container">
+                    <iframe src="{{ lesson.video_url }}" 
+                            title="{{ lesson.title }} Video" 
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen></iframe>
+                </div>
+            {% endif %}
         </div>
     </div>
     <!-- DESCRIPTION -->
