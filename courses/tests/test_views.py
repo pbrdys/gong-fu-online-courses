@@ -28,7 +28,6 @@ class CourseViewsTests(TestCase):
             course=self.course, 
             title='Test Lesson', 
             slug='test-lesson', 
-            body='Test Lesson Body',
             order=1)
         
         # URLs for the views
@@ -214,7 +213,6 @@ class CourseViewsTests(TestCase):
         data = {
             'title': 'New Lesson',
             'slug': 'new-lesson',
-            'body': 'This is a new lesson.',
             'order': 1
         }
         response = self.client.post(self.lesson_add_url, data)
@@ -228,7 +226,6 @@ class CourseViewsTests(TestCase):
         data = {
             'title': '',
             'slug': 'new-lesson',
-            'body': 'This is a new lesson.',
             'order': 1
         }
         response = self.client.post(self.lesson_add_url, data)
@@ -258,7 +255,6 @@ class CourseViewsTests(TestCase):
         data = {
             'title': 'Updated Lesson',
             'slug': 'test-lesson',
-            'body': 'Updated Lesson Body',
             'order': 1
         }
         response = self.client.post(self.lesson_edit_url, data)
@@ -266,7 +262,6 @@ class CourseViewsTests(TestCase):
         self.assertRedirects(response, reverse('lesson_detail', args=[self.course.slug, self.lesson.slug]))
         self.lesson.refresh_from_db()
         self.assertEqual(self.lesson.title, 'Updated Lesson')
-        self.assertEqual(self.lesson.body, 'Updated Lesson Body')
 
     @patch('courses.views.user_has_permission', return_value=True)
     def test_lesson_edit_view_user_has_permission_invalid_form(self, mock_user_has_permission):
@@ -274,7 +269,6 @@ class CourseViewsTests(TestCase):
         data = {
             'title': '',
             'slug': 'test-lesson',
-            'body': 'Updated Lesson Body',
             'order': 1
         }
         response = self.client.post(self.lesson_edit_url, data)

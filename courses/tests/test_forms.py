@@ -148,19 +148,16 @@ class LessonFormTest(TestCase):
             course=self.course,
             title="Test Lesson",
             slug="test-lesson",
-            body="Test Lesson Body",
             order=0,
         )
         self.valid_data = {
             'title': 'Updated Test Lesson',
             'slug': 'updated-test-lesson',
-            'body': 'Updated Test Lesson Body',
             'order': 0,
         }
         self.invalid_data = {
             'title': '',  # Title is required
             'slug': 'updated-test-lesson',
-            'body': 'Updated Test Lesson Body',
             'order': 0,
         }
 
@@ -207,13 +204,6 @@ class LessonFormTest(TestCase):
         form = LessonForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn('slug', form.errors)
-
-    def test_body_required(self):
-        form_data = self.valid_data.copy()
-        del form_data['body']
-        form = LessonForm(data=form_data)
-        self.assertFalse(form.is_valid())
-        self.assertIn('body', form.errors)
 
     def test_order_required(self):
         form_data = self.valid_data.copy()

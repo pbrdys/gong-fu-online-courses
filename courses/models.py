@@ -19,7 +19,7 @@ class Course(models.Model):
     order = models.IntegerField(default=0)
     
     def __str__(self):
-        return f"Course-Title: {self.title}"
+        return f"{self.title}"
     
     class Meta:
         ordering = ["level"]
@@ -37,4 +37,4 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     
     def __str__(self):
-        return f"Lesson-Title: {self.title}"
+        return f"{self.course} - {self.title}"
