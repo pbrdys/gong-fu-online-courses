@@ -5,18 +5,25 @@ from django.contrib import messages
 
 # Create your views here.
 def contact(request):
-    
-    if(request.method == "POST"):
+    if request.method == "POST":
         contact_form = ContactForm(data=request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            
             messages.add_message(
                 request, messages.SUCCESS,
-                'Message successfully send.'
+                'Message successfully sent.'
             )
-            
-    contact_form = ContactForm()
+        else:
+            return render(
+                request,
+                "contact.html",
+                {
+                    "contact_form": contact_form,
+                },
+            )
+    
+    else:
+        contact_form = ContactForm()
     
     return render(
         request,
