@@ -12,8 +12,9 @@ from custom_pages.views import user_has_permission, access_denied
 class course_overview(generic.ListView):
     queryset = Course.objects.all()
     template_name = "course_overview.html"
-    
-    
+
+
+@login_required
 def course_detail(request, slug):
     if user_has_permission(request.user):
         queryset = Course.objects.all()
@@ -31,9 +32,10 @@ def course_detail(request, slug):
     else:
         return access_denied(request)
     
-    
+
+@login_required
 def course_add(request):
-    if user_has_permission(request.user):
+    if request.user.is_superuser:
         # Handle the POST request from the course form
         if request.method == "POST":
             course_form = CourseForm(data=request.POST)
@@ -63,9 +65,10 @@ def course_add(request):
     else:
         return access_denied(request)
     
-    
+
+@login_required  
 def course_edit(request, course_id):
-    if user_has_permission(request.user):
+    if request.user.is_superuser:
         course = get_object_or_404(Course, pk=course_id)
         if request.method == "POST":
             course_form = CourseForm(data=request.POST, instance=course)
@@ -84,9 +87,10 @@ def course_edit(request, course_id):
     else:
         return access_denied(request) 
     
-     
+
+@login_required 
 def course_delete(request, course_id):
-    if user_has_permission(request.user):
+    if request.user.is_superuser:
         course = get_object_or_404(Course, pk=course_id)
         
         course.delete()
@@ -97,14 +101,19 @@ def course_delete(request, course_id):
         return access_denied(request)
 
 
+@login_required
 def lesson_detail(request, course_slug, lesson_slug):
-    course = get_object_or_404(Course, slug=course_slug)
-    lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
-    return render(request, 'lesson_detail.html', {'lesson': lesson})
-
-
-def lesson_add(request, course_slug):
     if user_has_permission(request.user):
+        course = get_object_or_404(Course, slug=course_slug)
+        lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
+        return render(request, 'lesson_detail.html', {'lesson': lesson})
+    else:
+        return access_denied(request)
+
+
+@login_required
+def lesson_add(request, course_slug):
+    if request.user.is_superuser:
         course = get_object_or_404(Course, slug=course_slug)
         
         if request.method == "POST":
@@ -133,8 +142,9 @@ def lesson_add(request, course_slug):
         return access_denied(request)
     
 
+@login_required
 def lesson_edit(request, course_slug, lesson_slug):
-    if user_has_permission(request.user):
+    if request.user.is_superuser:
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
         
@@ -163,8 +173,9 @@ def lesson_edit(request, course_slug, lesson_slug):
         return access_denied(request)
     
 
+@login_required
 def lesson_delete(request, lesson_id, course_slug):
-    if user_has_permission(request.user):
+    if request.user.is_superuser:
         lesson = get_object_or_404(Lesson, pk=lesson_id)
         
         lesson.delete()
