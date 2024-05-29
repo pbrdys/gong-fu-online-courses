@@ -17,7 +17,7 @@
 
 <div class="container-fluid">
 
-    <h2>COURSE OVERVIEW</h2>
+    <h1>COURSE OVERVIEW</h1>
 
     <div class="row">
         {% for course in course_list %}
@@ -25,7 +25,7 @@
             <div class="card border-style-1">
                 <a href='{{ course.slug }}'>
                     {% if "placeholder" in course.featured_image.url %}
-                        <img class="card-img-top" src="{% static 'images/default-course-image.jpg' %}" alt="placeholder image">
+                        <img class="card-img-top" src="{% static 'images/default-course-image.jpg' %}" alt="{{ course.title }} Banner">
                     {% else %}
                         <img class="card-img-top" src=" {{ course.featured_image.url }}" alt="{{ course.title }}">
                     {% endif %}
@@ -38,7 +38,7 @@
                     <div class='course-level bg-advanced'>{{ course.get_level_display }}</div>
                 {% endif %}
                 <div class='card-header'>
-                    <a href='{{ course.slug }}' class='card-title-link'><h3 class='card-title'>{{ course.title }}</h3></a>
+                    <a href='{{ course.slug }}' class='card-title-link'><h2 class='card-title'>{{ course.title }}</h2></a>
                 </div>
                 <div class='card-body'>
                     <p class='card-text'>{{ course.description }}</p>
@@ -50,9 +50,9 @@
                             {% if user.is_superuser%}
                                 <div class="ml-1">
                                     <!-- EDIT COURSE -->
-                                    <a href='edit_course/{{ course.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' course_id="{{ course.id }}"><i class="fas fa-edit"></i></a>
+                                    <a href='edit_course/{{ course.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' course_id="{{ course.id }}" title="Edit Course"><i class="fas fa-edit"></i></a>
                                     <!-- DELETE COURSE -->
-                                    <button class="btn-warrior btn-warrior-color-red btn-delete-course" 
+                                    <button class="btn-warrior btn-warrior-color-red btn-delete-course" title="Delete Course"
                                         course_id="{{ course.id }}">
                                         <i class="fas fa-trash-alt"></i>
                                 </button>

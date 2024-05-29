@@ -5,6 +5,7 @@
     --color-green: #407950bb;
     --color-grey: #f3f3f3;
     --color-dark-grey: #8a8a8a;
+    --color-navigation: #5a5a5a;
     --foundation: #eac05ebb;
     --intermediate: #407950bb;
     --advanced: #1A6F8Ebb;
@@ -23,7 +24,7 @@
 }
 .nav-link {
     text-transform: uppercase;
-    color: var(--color-dark-grey) !important;
+    color: var(--color-navigation) !important;
 }
 
 .nav-link.active {
@@ -140,13 +141,13 @@ body {
 }
 
 
-
 .title-2 {
-    font-size: 2rem !important;	
-    line-height: 2rem !important;
+    font-size: 1.75rem !important;	
+    line-height: 1.75rem !important;
     font-weight: 500 !important;
     color: #103977 !important;
     text-decoration: none !important;
+    text-transform: uppercase;
 }
 
 .title-3 {
@@ -155,7 +156,7 @@ body {
     font-weight: 500 !important;
     color: #6b6b6b !important;
     text-transform: uppercase;
-    text-decoration: underline;
+    text-decoration: none !important;
 }
 
 /* FOOTER */
