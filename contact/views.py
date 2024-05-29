@@ -13,6 +13,8 @@ def contact(request):
                 request, messages.SUCCESS,
                 'Message successfully sent.'
             )
+            # Create a new empty form instance to clear the form
+            contact_form = ContactForm()
         else:
             return render(
                 request,
