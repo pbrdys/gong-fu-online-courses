@@ -5,6 +5,8 @@ from django.http import HttpResponseForbidden
 def user_has_permission(user):
     return user.is_superuser or user.is_authenticated
 
+def user_is_superuser(user):
+    return user.is_superuser
 
 # access denied
 def access_denied(request):

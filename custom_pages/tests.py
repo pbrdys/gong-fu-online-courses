@@ -3,15 +3,20 @@ from django.contrib.auth.models import User
 from django.test import RequestFactory
 from . import views
 
+
 class CustomViewsTestCase(TestCase):
 
     def test_user_has_permission(self):
         # Test superuser
-        superuser = User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+        superuser = User.objects.create_superuser(
+            'admin', 'admin@example.com', 'admin')
+
         self.assertTrue(views.user_has_permission(superuser))
 
         # Test authenticated user
-        authenticated_user = User.objects.create_user('user', 'user@example.com', 'password')
+        authenticated_user = User.objects.create_user(
+            'user', 'user@example.com', 'password')
+
         self.assertTrue(views.user_has_permission(authenticated_user))
 
     def test_access_denied_view(self):
@@ -21,7 +26,9 @@ class CustomViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 403)
 
         # Test with an authenticated user
-        request.user = User.objects.create_user('user', 'user@example.com', 'password')
+        request.user = User.objects.create_user(
+            'user', 'user@example.com', 'password')
+
         response = views.access_denied(request)
         self.assertEqual(response.status_code, 403)
 

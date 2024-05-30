@@ -6,7 +6,8 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
-from custom_pages.views import user_has_permission, access_denied
+from custom_pages.views import user_has_permission, user_is_superuser, access_denied
+
 
 # Create your views here.
 class course_overview(generic.ListView):
@@ -20,7 +21,7 @@ def course_detail(request, slug):
         queryset = Course.objects.all()
         course = get_object_or_404(queryset, slug=slug)
         lessons = course.lessons.all()
-        
+
         return render(
             request,
             "course_detail.html",
@@ -31,11 +32,11 @@ def course_detail(request, slug):
         )
     else:
         return access_denied(request)
-    
+
 
 @login_required
 def course_add(request):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         # Handle the POST request from the course form
         if request.method == "POST":
             course_form = CourseForm(data=request.POST)
@@ -52,9 +53,9 @@ def course_add(request):
                     request, messages.ERROR,
                     'Form not valid'
                 )
-                
+
         course_form = CourseForm()
-        
+
         return render(
             request,
             "course_add.html",
@@ -64,38 +65,44 @@ def course_add(request):
         )
     else:
         return access_denied(request)
-    
 
-@login_required  
+
+@login_required
 def course_edit(request, course_id):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
         if request.method == "POST":
             course_form = CourseForm(data=request.POST, instance=course)
-            
+
             if course_form.is_valid():
                 course_form.save()
-                messages.add_message(request, messages.SUCCESS, 'Course Updated!')
+                messages.add_message(
+                    request, messages.SUCCESS, 'Course Updated!')
+
                 return HttpResponseRedirect(reverse('course_overview'))
             else:
-                messages.add_message(request, messages.ERROR, 'Error updating course!')
+                messages.add_message(
+                    request, messages.ERROR, 'Error updating course!')
         else:
             # If it's a GET request, initialize the form with the instance data
             course_form = CourseForm(instance=course)
 
-        return render(request, 'course_edit.html', {'course_edit_form': course_form, 'course': course})
-    else:
-        return access_denied(request) 
-    
+        return render(
+            request, 'course_edit.html',
+            {'course_edit_form': course_form, 'course': course})
 
-@login_required 
+    else:
+        return access_denied(request)
+
+
+@login_required
 def course_delete(request, course_id):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
-        
+
         course.delete()
         messages.add_message(request, messages.SUCCESS, 'Course deleted!')
-        
+
         return HttpResponseRedirect(reverse("course_overview"))
     else:
         return access_denied(request)
@@ -113,9 +120,9 @@ def lesson_detail(request, course_slug, lesson_slug):
 
 @login_required
 def lesson_add(request, course_slug):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         course = get_object_or_404(Course, slug=course_slug)
-        
+
         if request.method == "POST":
             lesson_form = LessonForm(data=request.POST)
             if lesson_form.is_valid():
@@ -129,7 +136,7 @@ def lesson_add(request, course_slug):
                 return redirect('course_detail', slug=course_slug)
         else:
             lesson_form = LessonForm()
-        
+
         return render(
             request,
             "lesson_add.html",  # Ensure the template path is correct
@@ -140,14 +147,14 @@ def lesson_add(request, course_slug):
         )
     else:
         return access_denied(request)
-    
+
 
 @login_required
 def lesson_edit(request, course_slug, lesson_slug):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
-        
+
         if request.method == "POST":
             lesson_form = LessonForm(data=request.POST, instance=lesson)
             if lesson_form.is_valid():
@@ -156,10 +163,13 @@ def lesson_edit(request, course_slug, lesson_slug):
                     request, messages.SUCCESS,
                     'Lesson successfully updated'
                 )
-                return redirect('lesson_detail', course_slug=course_slug, lesson_slug=lesson_slug)
+                return redirect(
+                    'lesson_detail',
+                    course_slug=course_slug, lesson_slug=lesson_slug)
+
         else:
             lesson_form = LessonForm(instance=lesson)
-        
+
         return render(
             request,
             'lesson_edit.html',
@@ -171,16 +181,16 @@ def lesson_edit(request, course_slug, lesson_slug):
         )
     else:
         return access_denied(request)
-    
+
 
 @login_required
 def lesson_delete(request, lesson_id, course_slug):
-    if request.user.is_superuser:
+    if user_is_superuser(request.user):
         lesson = get_object_or_404(Lesson, pk=lesson_id)
-        
+
         lesson.delete()
         messages.add_message(request, messages.SUCCESS, 'Lesson deleted!')
-        
+
         return redirect('course_detail', slug=course_slug)
     else:
         return access_denied(request)

@@ -1,12 +1,11 @@
 # tests.py
 from django.test import TestCase
-from django.urls import reverse
 from courses.models import Course, Lesson
 from courses.forms import CourseForm, LessonForm
 
+
 class CourseFormTest(TestCase):
-    # MOCK DATA 
-    ####################################################################
+    # MOCK DATA
     ####################################################################
     def setUp(self):
         self.course = Course.objects.create(
@@ -38,11 +37,10 @@ class CourseFormTest(TestCase):
             'level': 0,
             'order': 0,
         }
-        
-    # TEST CASES 
+
+    # TEST CASES
     ####################################################################
-    ####################################################################
-    
+
     # TEST FORM IS VALID
     def test_course_form_valid(self):
         form = CourseForm(data=self.valid_data)
@@ -60,7 +58,7 @@ class CourseFormTest(TestCase):
         self.assertEqual(course.title, 'Updated Test Course')
         self.assertEqual(Course.objects.count(), 2)
 
-    # TEST UPDATE COURSE 
+    # TEST UPDATE COURSE
     def test_course_form_update(self):
         form = CourseForm(data=self.valid_data, instance=self.course)
         self.assertTrue(form.is_valid())
@@ -70,11 +68,11 @@ class CourseFormTest(TestCase):
         self.course.refresh_from_db()
         self.assertEqual(self.course.title, 'Updated Test Course')
 
-    # TEST DELETE COURSE 
+    # TEST DELETE COURSE
     def test_course_delete(self):
         self.course.delete()
         self.assertEqual(Course.objects.count(), 0)
-    
+
     # TEST REQUIRED COURSE FIELDS
     def test_title_required(self):
         form_data = self.valid_data.copy()
@@ -132,7 +130,8 @@ class CourseFormTest(TestCase):
     #     form = CourseForm(data=form_data)
     #     self.assertFalse(form.is_valid())
     #     self.assertIn('title', form.errors)
-    
+
+
 class LessonFormTest(TestCase):
     def setUp(self):
         self.course = Course.objects.create(
@@ -176,7 +175,7 @@ class LessonFormTest(TestCase):
         lesson.course = self.course
         lesson.save()
         self.assertEqual(lesson.title, 'Updated Test Lesson')
-        self.assertEqual(Lesson.objects.count(), 2)  # Including the initial lesson
+        self.assertEqual(Lesson.objects.count(), 2)
 
     def test_lesson_form_update(self):
         form = LessonForm(data=self.valid_data, instance=self.lesson)
@@ -190,7 +189,7 @@ class LessonFormTest(TestCase):
     def test_lesson_delete(self):
         self.lesson.delete()
         self.assertEqual(Lesson.objects.count(), 0)
-        
+
     def test_title_required(self):
         form_data = self.valid_data.copy()
         del form_data['title']

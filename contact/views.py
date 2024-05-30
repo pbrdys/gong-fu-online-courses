@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import ContactForm
 from django.contrib import messages
 
+
 # Create your views here.
 def contact(request):
     if request.method == "POST":
@@ -23,14 +24,13 @@ def contact(request):
                     "contact_form": contact_form,
                 },
             )
-    
     else:
         contact_form = ContactForm()
-    
+
     return render(
         request,
         "contact.html",
         {
-            "contact_form": contact_form, 
+            "contact_form": contact_form,
         },
     )
