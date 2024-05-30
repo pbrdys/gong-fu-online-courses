@@ -4,8 +4,21 @@ from .forms import ContactForm
 from django.contrib import messages
 
 
-# Create your views here.
 def contact(request):
+    """
+    Handle the contact form submission and rendering.
+
+    If the request method is POST, validate and save the contact form.
+    If the form is valid, save the form data and display a success message.
+    If the form is not valid, render the form with errors.
+    If the request method is not POST, display an empty contact form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response with the rendered contact form.
+    """
     if request.method == "POST":
         contact_form = ContactForm(data=request.POST)
         if contact_form.is_valid():

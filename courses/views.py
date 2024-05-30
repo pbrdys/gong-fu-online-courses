@@ -11,12 +11,32 @@ from custom_pages.views import user_has_permission, user_is_superuser, access_de
 
 # Create your views here.
 class course_overview(generic.ListView):
+    """
+    View for displaying an overview of all courses.
+
+    Attributes:
+        queryset (QuerySet): Queryset of all Course objects.
+        template_name (str): The name of the template used for rendering the view.
+    """ 
     queryset = Course.objects.all()
     template_name = "course_overview.html"
 
 
 @login_required
 def course_detail(request, slug):
+    """
+    View for displaying details of a specific course.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the course.
+
+    Returns:
+        HttpResponse: Rendered course detail template.
+
+    Raises:
+        Http404: If the requested course does not exist.
+    """
     if user_has_permission(request.user):
         queryset = Course.objects.all()
         course = get_object_or_404(queryset, slug=slug)
@@ -36,6 +56,15 @@ def course_detail(request, slug):
 
 @login_required
 def course_add(request):
+    """
+    View for adding a new course.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered course add template.
+    """
     if user_is_superuser(request.user):
         # Handle the POST request from the course form
         if request.method == "POST":
@@ -69,6 +98,19 @@ def course_add(request):
 
 @login_required
 def course_edit(request, course_id):
+    """
+    View for editing an existing course.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        course_id (int): The ID of the course to be edited.
+
+    Returns:
+        HttpResponse: Rendered course edit template.
+
+    Raises:
+        Http404: If the requested course does not exist.
+    """
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
         if request.method == "POST":
@@ -97,6 +139,19 @@ def course_edit(request, course_id):
 
 @login_required
 def course_delete(request, course_id):
+    """
+    View for deleting an existing course.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        course_id (int): The ID of the course to be deleted.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the course overview page.
+
+    Raises:
+        Http404: If the requested course does not exist.
+    """
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
 
@@ -110,6 +165,20 @@ def course_delete(request, course_id):
 
 @login_required
 def lesson_detail(request, course_slug, lesson_slug):
+    """
+    View for displaying details of a specific lesson.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        course_slug (str): The slug of the course to which the lesson belongs.
+        lesson_slug (str): The slug of the lesson.
+
+    Returns:
+        HttpResponse: Rendered lesson detail template.
+
+    Raises:
+        Http404: If the requested course or lesson does not exist.
+    """
     if user_has_permission(request.user):
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
@@ -120,6 +189,16 @@ def lesson_detail(request, course_slug, lesson_slug):
 
 @login_required
 def lesson_add(request, course_slug):
+    """
+    View for adding a new lesson to a course.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        course_slug (str): The slug of the course to which the lesson will be added.
+
+    Returns:
+        HttpResponse: Rendered lesson add template.
+    """
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, slug=course_slug)
 
@@ -151,6 +230,20 @@ def lesson_add(request, course_slug):
 
 @login_required
 def lesson_edit(request, course_slug, lesson_slug):
+    """
+    View for editing an existing lesson.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        course_slug (str): The slug of the course to which the lesson belongs.
+        lesson_slug (str): The slug of the lesson to be edited.
+
+    Returns:
+        HttpResponse: Rendered lesson edit template.
+
+    Raises:
+        Http404: If the requested course or lesson does not exist.
+    """
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
@@ -185,6 +278,20 @@ def lesson_edit(request, course_slug, lesson_slug):
 
 @login_required
 def lesson_delete(request, lesson_id, course_slug):
+    """
+    View for deleting an existing lesson.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        lesson_id (int): The ID of the lesson to be deleted.
+        course_slug (str): The slug of the course from which the lesson will be deleted.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the course detail page.
+
+    Raises:
+        Http404: If the requested lesson does not exist.
+    """
     if user_is_superuser(request.user):
         lesson = get_object_or_404(Lesson, pk=lesson_id)
 

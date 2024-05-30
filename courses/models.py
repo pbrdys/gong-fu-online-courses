@@ -11,11 +11,26 @@ CATEGORY = (
     (4, "Taiyi"),
     (5, "Sword"),
     (6, "Gun")
-    )
+)
 
 
-# Create your models here.
 class Course(models.Model):
+    """
+    Model representing a course.
+
+    Attributes:
+        title (str): The title of the course.
+        slug (str): The slug of the course.
+        description (str): The description of the course.
+        category (int): The category of the course.
+        featured_image (CloudinaryField): The featured image of the course.
+        content (str): The content of the course.
+        level (int): The level of the course.
+        created_on (datetime): The datetime when the course was created.
+        updated_on (datetime): The datetime when the course was last updated.
+        order (int): The order of the course.
+    """
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
@@ -35,6 +50,20 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    """
+    Model representing a lesson.
+
+    Attributes:
+        course (Course): The course to which the lesson belongs.
+        title (str): The title of the lesson.
+        slug (str): The slug of the lesson.
+        video_url (str): The URL of the video for the lesson.
+        description (str): The description of the lesson.
+        recommendation (str): Recommendations for the lesson.
+        created_on (datetime): The datetime when the lesson was created.
+        order (int): The order of the lesson.
+    """
+
     course = models.ForeignKey(
         Course, on_delete=models.CASCADE, related_name="lessons"
     )

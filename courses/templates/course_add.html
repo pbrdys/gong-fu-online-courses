@@ -3,22 +3,25 @@
 {% load crispy_forms_tags %}
 
 <div class="container-fluid">
+    <!-- Title Row -->
     <div class="row text-center mt-5">
         <div class="col-md-12">
             <h1 class="title-1">ADD NEW COURSE</h1>
         </div>
     </div>
+    
+    <!-- Form Row -->
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8">
+            <!-- Course Form -->
             <form id="courseForm" method="post" class="form">
-                {{ course_form | crispy }}
-                {% csrf_token %} <!-- CSRF_ALLOWED_HOSTS -->
+                {{ course_form | crispy }} <!-- Render form with crispy forms -->
+                {% csrf_token %} <!-- CSRF token for security -->
                 <button id="submitButton" type="submit"
-                class="btn-warrior btn-warrior-color-green">Submit</button>
+                class="btn-warrior btn-warrior-color-green">Submit</button> <!-- Submit Button -->
             </form>
         </div>
     </div>
 </div>
-
 
 {% endblock content %}

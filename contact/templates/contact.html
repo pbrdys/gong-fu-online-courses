@@ -3,19 +3,23 @@
 {% block content %}
 
 <div class="container-fluid">
+    <!-- Contact header section -->
     <div class="row justify-content-center text-center mt-5">
         <div class="col-12 col-md-6">
             <h1 class="title-1">Contact</h1>
             <p>Glad you found us!<br>
             If you have any questions feel free to contact us. <br>
             We will come back to you as soon as possible. </p>
-            </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
+    </div>
+    <!-- Contact form section -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
             <form method="post" class="contact-form">
+                <!-- Render the contact form fields -->
                 {{ contact_form }}
                 {% csrf_token %}
+                <!-- Submit button for the contact form -->
                 <button class="btn-warrior btn-warrior-color-blue contact-send-btn"
                     type="submit">Send message</button>
             </form>

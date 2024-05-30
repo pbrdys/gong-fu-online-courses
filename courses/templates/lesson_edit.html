@@ -1,24 +1,31 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
 
+<!-- Container for the main content -->
 <div class="container-fluid">
+    <!-- Row for the page title -->
     <div class="row text-center mt-5">
         <div class="col-md-12">
+            <!-- Display the title with the lesson ID -->
             <h1 class="title-1">EDIT LESSON with ID {{ lesson.id }} </h1>
         </div>
     </div>
+    <!-- Row for the form -->
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8">
+            <!-- Form for editing the lesson -->
             <form id="lessonEditForm" method="post" class="form">
+                <!-- Render the form fields using crispy forms for better styling -->
                 {{ lesson_form | crispy }}
+                <!-- CSRF token for security -->
                 {% csrf_token %} <!-- CSRF_ALLOWED_HOSTS -->
+                <!-- Submit button for the form -->
                 <button id="submitButton" type="submit"
                 class="btn-warrior btn-warrior-color-green">Submit</button>
             </form>
         </div>
     </div>
 </div>
-
 
 {% endblock content %}

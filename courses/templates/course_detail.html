@@ -6,11 +6,13 @@
         <div class="col-md-12 p-0">
             <div class="course-banner-container">
                 {% if "placeholder" in course.featured_image.url %}
+                    <!-- Display default image if no featured image is set -->
                     <img class="course-banner" src="{% static 'images/default-course-image.jpg' %}" alt="{{ course.title }} Banner">
                     <div class="course-title-overlay">
                         <h1 class="title-1">{{ course.title }}</h1>
                     </div>
                 {% else %}
+                    <!-- Display course's featured image -->
                     <img class="course-banner" src="{{ course.featured_image.url }}" alt="{{ course.title }}">
                     <div class="course-title-overlay">
                         <h1 class="title-1">{{ course.title }}</h1>
@@ -22,93 +24,89 @@
 </div>
 
 <div class="container-fluid px-5">
-    <!-- using the | safe keyword the content will be rendered as html properly -->
+    <!-- Render course content safely as HTML -->
     {{ course.content | safe }}
 </div>
 
 <!-- LESSONS / COURSE CURRICULUM -->
 <div class="container-fluid px-5 mt-5">
-    {% if user.is_superuser%}
+    {% if user.is_superuser %}
     <div class="row mb-3">
         <div class="col-md-12">
+            <!-- Button to add a new lesson -->
             <a href="{% url 'lesson_add' course.slug %}" class="btn-warrior btn-warrior-color-green"><i class="fas fa-plus"></i> new Lesson</a>
         </div>
     </div>
     {% endif %}
-        <div class="row">
-            <div class="col-md-12">
-                <span class="title-2">Course Curriculum</span>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <span class="title-2">Course Curriculum</span>
         </div>
-        <div class="row mt-3 mb-5">
-            <div class="col-md-12">
-                {% for lesson in lessons %}
-                    <div class="row">
-                        <div class="col-md-12 bg-grey p-2 d-flex justify-content-between align-items-center
-                            {% if forloop.first %} border-radius-top{% endif %}
-                            {% if forloop.last %} border-radius-bottom{% endif %}">
-                            <div class="padding-left-1_5">
-                                <i class="fas fa-file"></i> 
-                                <a href="{{ lesson.slug }}" class="lesson-link">{{ lesson.title }}</a>
-                            </div>
-                            <div class="padding-right-1_5">
-                                <!-- START LESSON -->
-                                <a href="{{ lesson.slug }}" class="btn-warrior btn-warrior-color-blue" title="Start Lesson">
-                                    <i class="fas fa-play start-icon"></i>
-                                </a>
-                                {% if user.is_superuser%}
-                                <!-- EDIT LESSON -->
-                                <a href="{% url 'lesson_edit' course.slug lesson.slug %}" class="btn-warrior btn-warrior-color-yellow btn-edit" title="Edit Lesson">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <!-- DELETE LESSON -->
-                                <button class="btn-warrior btn-warrior-color-red btn-delete-lesson" title="Delete Lesson"
-                                    course_slug="{{ course.slug }}"
-                                    lesson_slug="{{ lesson.slug }}"
-                                    lesson_id="{{ lesson.id }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                                {% endif %}
-                            </div>
+    </div>
+    <div class="row mt-3 mb-5">
+        <div class="col-md-12">
+            {% for lesson in lessons %}
+                <div class="row">
+                    <div class="col-md-12 bg-grey p-2 d-flex justify-content-between align-items-center
+                        {% if forloop.first %} border-radius-top{% endif %}
+                        {% if forloop.last %} border-radius-bottom{% endif %}">
+                        <div class="padding-left-1_5">
+                            <i class="fas fa-file"></i> 
+                            <!-- Link to the lesson -->
+                            <a href="{{ lesson.slug }}" class="lesson-link">{{ lesson.title }}</a>
                         </div>
-                        {% if not forloop.last %}
-                            <hr style="margin-bottom: 0px;">
-                        {% endif %}
+                        <div class="padding-right-1_5">
+                            <!-- Button to start the lesson -->
+                            <a href="{{ lesson.slug }}" class="btn-warrior btn-warrior-color-blue" title="Start Lesson">
+                                <i class="fas fa-play start-icon"></i>
+                            </a>
+                            {% if user.is_superuser %}
+                            <!-- Button to edit the lesson -->
+                            <a href="{% url 'lesson_edit' course.slug lesson.slug %}" class="btn-warrior btn-warrior-color-yellow btn-edit" title="Edit Lesson">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- Button to delete the lesson -->
+                            <button class="btn-warrior btn-warrior-color-red btn-delete-lesson" title="Delete Lesson"
+                                course_slug="{{ course.slug }}"
+                                lesson_slug="{{ lesson.slug }}"
+                                lesson_id="{{ lesson.id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            {% endif %}
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                    {% if not forloop.last %}
+                        <hr style="margin-bottom: 0px;">
+                    {% endif %}
+                </div>
+            {% endfor %}
         </div>
+    </div>
 
-
-        <!-- Delete confirmation modal -->
+    <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteLessonModal" tabindex="-1"
     aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title"
-            id="deleteModalLabel">Delete lesson?</h5>
-        <button type="button" class="btn-close"
-            data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        Are you sure you want to delete your lesson?
-        This action cannot be undone.
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-            data-bs-dismiss="modal">Close</button>
-        <a id="deleteLessonConfirm" href="#" class="btn
-            btn-danger">Delete</a>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete lesson?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your lesson? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a id="deleteLessonConfirm" href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
-        
 </div>
 
 {% endblock content %}
 
 {% block extras %}
+    <!-- Include JavaScript for handling lesson deletion -->
     <script src="{% static 'js/lesson.js' %}"></script>
 {% endblock %}

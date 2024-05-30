@@ -9,8 +9,14 @@ from django.http import HttpResponseRedirect
 
 
 class CourseViewsTests(TestCase):
+    """
+    Test cases for views in the courses app.
+    """
 
     def setUp(self):
+        """
+        Set up initial data and URLs for testing views.
+        """
         # Create a user
         self.user = User.objects.create_user(
             username='testuser', password='testpassword')
@@ -60,12 +66,16 @@ class CourseViewsTests(TestCase):
         self.client = Client()
 
     def login_user(self):
+        """
+        Helper function to log in the test user.
+        """
         self.client.login(username='testuser', password='testpassword')
-
-    # Course Detail View Tests
 
     @patch('courses.views.user_has_permission', return_value=True)
     def test_course_detail_user_has_permission(self, mock_user_has_permission):
+        """
+        Test course detail view when user has permission.
+        """
         self.login_user()
         response = self.client.get(self.course_detail_url)
         self.assertEqual(response.status_code, 200)
@@ -75,6 +85,9 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_has_permission', return_value=True)
     def test_course_detail_course_not_exist(self, mock_user_has_permission):
+        """
+        Test course detail view when course does not exist.
+        """
         self.login_user()
         non_existent_url = reverse('course_detail', args=['some-course'])
         response = self.client.get(non_existent_url)
@@ -82,19 +95,26 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_has_permission', return_value=False)
     def test_course_detail_user_no_permission(self, mock_user_has_permission):
+        """
+        Test course detail view when user has no permission.
+        """
         self.login_user()
         response = self.client.get(self.course_detail_url)
         self.assertEqual(response.status_code, 403)
 
     @patch('courses.views.user_has_permission', return_value=False)
-    def test_course_detailuser_not_logged_in(self, mock_user_has_permission):
+    def test_course_detail_user_not_logged_in(self, mock_user_has_permission):
+        """
+        Test course detail view when user is not logged in.
+        """
         response = self.client.get(self.course_detail_url)
         self.assertNotEqual(response.status_code, 200)
 
-    # Course Add View Tests
-
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_add_valid_form(self, mock_user_is_superuser):
+        """
+        Test course add view with valid form data.
+        """
         self.login_user()
         data = {
             'title': 'New Course',
@@ -112,6 +132,9 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_add_invalid_form(self, mock_user_is_superuser):
+        """
+        Test course add view with invalid form data.
+        """
         self.login_user()
         data = {
             'title': '',
@@ -130,22 +153,29 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=False)
     def test_course_add_user_no_permission(self, mock_user_is_superuser):
+        """
+        Test course add view when user has no permission.
+        """
         self.login_user()
         response = self.client.get(self.course_add_url)
         self.assertEqual(response.status_code, 403)
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_add_get_request(self, mock_user_is_superuser):
+        """
+        Test course add view with get request.
+        """
         self.login_user()
         response = self.client.get(self.course_add_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'course_add.html')
         self.assertIsInstance(response.context['course_form'], CourseForm)
 
-    # Course Edit View Tests
-
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_edit_valid_form(self, mock_user_is_superuser):
+        """
+        Test course edit view with valid form data.
+        """
         self.login_user()
         data = {
             'title': 'Updated Course',
@@ -165,6 +195,9 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_edit_invalid_form(self, mock_user_is_superuser):
+        """
+        Test course edit view with invalid form data.
+        """
         self.login_user()
         data = {
             'title': '',
@@ -183,12 +216,18 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=False)
     def test_course_edit_user_no_permission(self, mock_user_is_superuser):
+        """
+        Test course edit view when user has no permission.
+        """
         self.login_user()
         response = self.client.get(self.course_edit_url)
         self.assertEqual(response.status_code, 403)
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_edit_get_request(self, mock_user_is_superuser):
+        """
+        Test course edit view with get request.
+        """
         self.login_user()
         response = self.client.get(self.course_edit_url)
         self.assertEqual(response.status_code, 200)
@@ -212,20 +251,22 @@ class CourseViewsTests(TestCase):
         response = self.client.post(self.course_delete_url)
         self.assertEqual(response.status_code, 403)
 
-    # Lesson Detail View Tests
-
     @patch('courses.views.user_has_permission', return_value=True)
     def test_lesson_detail_view(self, mock_user_has_permission):
+        """
+        Test lesson detail view.
+        """
         self.login_user()
         response = self.client.get(self.lesson_detail_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'lesson_detail.html')
         self.assertContains(response, self.lesson.title)
 
-    # Lesson Add View Tests
-
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_add_valid_form(self, mock_user_is_superuser):
+        """
+        Test lesson add view with valid form data.
+        """
         self.login_user()
         data = {
             'title': 'New Lesson',
@@ -241,6 +282,9 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_add_invalid_form(self, mock_user_is_superuser):
+        """
+        Test lesson add view with invalid form data.
+        """
         self.login_user()
         data = {
             'title': '',
@@ -254,22 +298,29 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=False)
     def test_lesson_add_user_no_permission(self, mock_user_is_superuser):
+        """
+        Test lesson add view when user has no permission.
+        """
         self.login_user()
         response = self.client.get(self.lesson_add_url)
         self.assertEqual(response.status_code, 403)
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_add_get_request(self, mock_user_is_superuser):
+        """
+        Test lesson add view with get request.
+        """
         self.login_user()
         response = self.client.get(self.lesson_add_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'lesson_add.html')
         self.assertIsInstance(response.context['lesson_form'], LessonForm)
 
-    # Lesson Edit View Tests
-
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_edit_valid_form(self, mock_user_is_superuser):
+        """
+        Test lesson edit view with valid form data.
+        """
         self.login_user()
         data = {
             'title': 'Updated Lesson',
@@ -286,6 +337,9 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_edit_invalid_form(self, mock_user_is_superuser):
+        """
+        Test lesson edit view with invalid form data.
+        """
         self.login_user()
         data = {
             'title': '',
@@ -300,12 +354,18 @@ class CourseViewsTests(TestCase):
 
     @patch('courses.views.user_is_superuser', return_value=False)
     def test_lesson_edit_user_no_permission(self, mock_user_is_superuser):
+        """
+        Test lesson edit view when user has no permission.
+        """
         self.login_user()
         response = self.client.get(self.lesson_edit_url)
         self.assertEqual(response.status_code, 403)
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_edit_get_request(self, mock_user_is_superuser):
+        """
+        Test lesson edit view with get request.
+        """
         self.login_user()
         response = self.client.get(self.lesson_edit_url)
         self.assertEqual(response.status_code, 200)
@@ -313,10 +373,11 @@ class CourseViewsTests(TestCase):
         self.assertIsInstance(response.context['lesson_form'], LessonForm)
         self.assertEqual(response.context['lesson'], self.lesson)
 
-    # Lesson Delete View Tests
-
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_lesson_delete_user_is_superuser(self, mock_user_is_superuser):
+        """
+        Test lesson delete view when user is a superuser.
+        """
         self.login_user()
         response = self.client.post(self.lesson_delete_url)
         self.assertEqual(response.status_code, 302)

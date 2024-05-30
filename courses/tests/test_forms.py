@@ -5,9 +5,14 @@ from courses.forms import CourseForm, LessonForm
 
 
 class CourseFormTest(TestCase):
-    # MOCK DATA
-    ####################################################################
+    """
+    Test cases for the CourseForm.
+    """
+
     def setUp(self):
+        """
+        Set up mock data for testing CourseForm.
+        """
         self.course = Course.objects.create(
             title="Test Course",
             slug="test-course",
@@ -38,28 +43,34 @@ class CourseFormTest(TestCase):
             'order': 0,
         }
 
-    # TEST CASES
-    ####################################################################
-
-    # TEST FORM IS VALID
     def test_course_form_valid(self):
+        """
+        Test if the CourseForm is valid with valid data.
+        """
         form = CourseForm(data=self.valid_data)
         self.assertTrue(form.is_valid())
 
     def test_course_form_invalid(self):
+        """
+        Test if the CourseForm is invalid with invalid data.
+        """
         form = CourseForm(data=self.invalid_data)
         self.assertFalse(form.is_valid())
 
-    # TEST ADDING COURSE
     def test_course_form_save(self):
+        """
+        Test if CourseForm saves correctly with valid data.
+        """
         form = CourseForm(data=self.valid_data)
         self.assertTrue(form.is_valid())
         course = form.save()
         self.assertEqual(course.title, 'Updated Test Course')
         self.assertEqual(Course.objects.count(), 2)
 
-    # TEST UPDATE COURSE
     def test_course_form_update(self):
+        """
+        Test if CourseForm updates correctly with valid data.
+        """
         form = CourseForm(data=self.valid_data, instance=self.course)
         self.assertTrue(form.is_valid())
         updated_course = form.save()
@@ -68,13 +79,17 @@ class CourseFormTest(TestCase):
         self.course.refresh_from_db()
         self.assertEqual(self.course.title, 'Updated Test Course')
 
-    # TEST DELETE COURSE
     def test_course_delete(self):
+        """
+        Test if Course is deleted successfully.
+        """
         self.course.delete()
         self.assertEqual(Course.objects.count(), 0)
 
-    # TEST REQUIRED COURSE FIELDS
     def test_title_required(self):
+        """
+        Test if the title field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['title']
         form = CourseForm(data=form_data)
@@ -82,6 +97,9 @@ class CourseFormTest(TestCase):
         self.assertIn('title', form.errors)
 
     def test_slug_required(self):
+        """
+        Test if the slug field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['slug']
         form = CourseForm(data=form_data)
@@ -89,6 +107,9 @@ class CourseFormTest(TestCase):
         self.assertIn('slug', form.errors)
 
     def test_description_required(self):
+        """
+        Test if the description field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['description']
         form = CourseForm(data=form_data)
@@ -96,6 +117,9 @@ class CourseFormTest(TestCase):
         self.assertIn('description', form.errors)
 
     def test_category_required(self):
+        """
+        Test if the category field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['category']
         form = CourseForm(data=form_data)
@@ -103,6 +127,9 @@ class CourseFormTest(TestCase):
         self.assertIn('category', form.errors)
 
     def test_content_required(self):
+        """
+        Test if the content field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['content']
         form = CourseForm(data=form_data)
@@ -110,6 +137,9 @@ class CourseFormTest(TestCase):
         self.assertIn('content', form.errors)
 
     def test_level_required(self):
+        """
+        Test if the level field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['level']
         form = CourseForm(data=form_data)
@@ -117,23 +147,25 @@ class CourseFormTest(TestCase):
         self.assertIn('level', form.errors)
 
     def test_order_required(self):
+        """
+        Test if the order field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['order']
         form = CourseForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn('order', form.errors)
 
-    # Invalid data tests
-    # def test_invalid_title(self):
-    #     form_data = self.valid_data.copy()
-    #     form_data['title'] = 0  # Invalid data type
-    #     form = CourseForm(data=form_data)
-    #     self.assertFalse(form.is_valid())
-    #     self.assertIn('title', form.errors)
-
 
 class LessonFormTest(TestCase):
+    """
+    Test cases for the LessonForm.
+    """
+
     def setUp(self):
+        """
+        Set up mock data for testing LessonForm.
+        """
         self.course = Course.objects.create(
             title="Test Course",
             slug="test-course",
@@ -161,14 +193,23 @@ class LessonFormTest(TestCase):
         }
 
     def test_lesson_form_valid(self):
+        """
+        Test if the LessonForm is valid with valid data.
+        """
         form = LessonForm(data=self.valid_data)
         self.assertTrue(form.is_valid())
 
     def test_lesson_form_invalid(self):
+        """
+        Test if the LessonForm is invalid with invalid data.
+        """
         form = LessonForm(data=self.invalid_data)
         self.assertFalse(form.is_valid())
 
     def test_lesson_form_save(self):
+        """
+        Test if LessonForm saves correctly with valid data.
+        """
         form = LessonForm(data=self.valid_data)
         self.assertTrue(form.is_valid())
         lesson = form.save(commit=False)
@@ -178,6 +219,9 @@ class LessonFormTest(TestCase):
         self.assertEqual(Lesson.objects.count(), 2)
 
     def test_lesson_form_update(self):
+        """
+        Test if LessonForm updates correctly with valid data.
+        """
         form = LessonForm(data=self.valid_data, instance=self.lesson)
         self.assertTrue(form.is_valid())
         updated_lesson = form.save()
@@ -187,10 +231,16 @@ class LessonFormTest(TestCase):
         self.assertEqual(self.lesson.title, 'Updated Test Lesson')
 
     def test_lesson_delete(self):
+        """
+        Test if Lesson is deleted successfully.
+        """
         self.lesson.delete()
         self.assertEqual(Lesson.objects.count(), 0)
 
     def test_title_required(self):
+        """
+        Test if the title field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['title']
         form = LessonForm(data=form_data)
@@ -198,6 +248,9 @@ class LessonFormTest(TestCase):
         self.assertIn('title', form.errors)
 
     def test_slug_required(self):
+        """
+        Test if the slug field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['slug']
         form = LessonForm(data=form_data)
@@ -205,6 +258,9 @@ class LessonFormTest(TestCase):
         self.assertIn('slug', form.errors)
 
     def test_order_required(self):
+        """
+        Test if the order field is required.
+        """
         form_data = self.valid_data.copy()
         del form_data['order']
         form = LessonForm(data=form_data)
