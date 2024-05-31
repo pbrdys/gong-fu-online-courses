@@ -205,6 +205,7 @@ body {
     width: 100%;
     min-height: 222px;
     max-height: 222px;
+    object-fit: cover;
     border-top-left-radius: 0.25rem !important;
     border-top-right-radius: 0.25rem !important;
 }
