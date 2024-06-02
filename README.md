@@ -1,7 +1,7 @@
 # SETUP Online-Course-Project
 
 1. Create a repo 
-Create repository from [template][https://github.com/Code-Institute-Org/ci-full-template]
+Create repository from ![template][https://github.com/Code-Institute-Org/ci-full-template]
 
 2. Install packages
 
@@ -19,7 +19,7 @@ Install Django Python Package:
 # Gong Fu Online - Courses
 
 Gong Fu Online - Courses is a fictional Kung Fu School, which is offering teaching people online the art of martial arts. The app is a online course management system designed to allow staff to easily manage the courses and bookings. It allows users to simply register and login to this website and start to learn Kung Fu step by step. 
-The live link can be found here: [Live Site - Gong Fu Online - Courses][https://pbrdys-gong-fu-online-courses-a434364e81b0.herokuapp.com/]
+The live link can be found here: ![Live Site - Gong Fu Online - Courses][https://pbrdys-gong-fu-online-courses-a434364e81b0.herokuapp.com/]
 
 ![Mock Up](doc/mockup.jpg)
 
