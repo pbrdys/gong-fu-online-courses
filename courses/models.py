@@ -46,7 +46,7 @@ class Course(models.Model):
         return f"{self.title}"
 
     class Meta:
-        ordering = ["level"]
+        ordering = ["order"]
 
 
 class Lesson(models.Model):
@@ -77,3 +77,6 @@ class Lesson(models.Model):
 
     def __str__(self):
         return f"{self.course} - {self.title}"
+    
+    class Meta:
+        ordering = ["order"]
