@@ -23,8 +23,8 @@
     <h1>COURSE OVERVIEW</h1>
 
     <div class="row">
-        <!-- Loop through each course in the course list -->
-        {% for course in course_list %}
+        <!-- Loop through each course in the paginated course list -->
+        {% for course in page_obj %}
         <div class="col-xs-12 col-sm-6 col-md-3 mt-3 mb-3">
             <div class="card border-style-1">
                 <!-- Course link and featured image -->
@@ -75,6 +75,32 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+
+    <hr class="hr-warrior">
+    
+    <!-- Pagination controls -->
+    <div class="pagination">
+        <div class="block-1">
+            <!-- If there is a previous page, show the first and previous links -->
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn-warrior btn-warrior-color-blue">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn-warrior btn-warrior-color-blue">previous</a>
+            {% endif %}
+        </div>
+        <div class="block-2">
+            <!-- Display the current page number and total pages -->
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+        </div>
+        <div class="block-3">
+            <!-- If there is a next page, show the next and last links -->
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn-warrior btn-warrior-color-blue">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-warrior btn-warrior-color-blue">last &raquo;</a>
+            {% endif %}
+        </div>
     </div>
 
     <!-- Delete confirmation modal -->
