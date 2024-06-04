@@ -78,7 +78,7 @@ def course_add(request):
                     request, messages.SUCCESS,
                     'Course successfully added'
                 )
-                return redirect('course_detail', slug=course.slug)  # Redirect to the course detail page
+                return redirect('course_overview')
             else:
                 messages.add_message(
                     request, messages.ERROR,
@@ -184,7 +184,7 @@ def lesson_detail(request, course_slug, lesson_slug):
     if user_has_permission(request.user):
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
-        return render(request, 'lesson_detail.html', {'lesson': lesson})
+        return render(request, 'lesson_detail.html', {'lesson': lesson, 'course': course})
     else:
         return access_denied(request)
 
@@ -258,9 +258,7 @@ def lesson_edit(request, course_slug, lesson_slug):
                     request, messages.SUCCESS,
                     'Lesson successfully updated'
                 )
-                return redirect(
-                    'lesson_detail',
-                    course_slug=course_slug, lesson_slug=lesson_slug)
+                return redirect('course_detail', slug=course_slug)
 
         else:
             lesson_form = LessonForm(instance=lesson)
