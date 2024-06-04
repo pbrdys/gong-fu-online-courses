@@ -69,22 +69,23 @@ def course_add(request):
     if user_is_superuser(request.user):
         # Handle the POST request from the course form
         if request.method == "POST":
-            course_form = CourseForm(data=request.POST)
+            course_form = CourseForm(data=request.POST, files=request.FILES)
             if course_form.is_valid():
                 course = course_form.save(commit=False)
                 course.save()
-                # display success message string:
+                # Display success message
                 messages.add_message(
                     request, messages.SUCCESS,
                     'Course successfully added'
                 )
+                return redirect('course_detail', slug=course.slug)  # Redirect to the course detail page
             else:
                 messages.add_message(
                     request, messages.ERROR,
                     'Form not valid'
                 )
-
-        course_form = CourseForm()
+        else:
+            course_form = CourseForm()
 
         return render(
             request,
@@ -115,7 +116,7 @@ def course_edit(request, course_id):
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
         if request.method == "POST":
-            course_form = CourseForm(data=request.POST, instance=course)
+            course_form = CourseForm(data=request.POST,  files=request.FILES, instance=course)
 
             if course_form.is_valid():
                 course_form.save()

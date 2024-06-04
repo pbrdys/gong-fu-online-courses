@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8">
             <!-- Course Form -->
-            <form id="courseForm" method="post" class="form">
+            <form id="courseForm" method="post" class="form" enctype="multipart/form-data">
                 {{ course_form | crispy }} <!-- Render form with crispy forms -->
                 {% csrf_token %} <!-- CSRF token for security -->
                 <button id="submitButton" type="submit"
