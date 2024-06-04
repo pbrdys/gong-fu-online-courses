@@ -272,6 +272,20 @@ body {
     border-radius: 1rem;
 }
 
+/* LESSON DETAIL */ 
+.back-to-course-navbar {
+    display: flex;
+    justify-content: end;
+    background: var(--color-dark-grey);
+    padding-block: 0.5rem;
+}
+.back-to-course-navbar a {
+    color: white;
+    font-weight: 700;
+    margin-right: 0.75rem;
+}
+
+
 /* DESIGN ELEMENTS */
 .hr-warrior {
     border-top: 1px solid var(--color-dark-grey);
