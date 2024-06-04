@@ -39,6 +39,10 @@ class CourseViewsTests(TestCase):
             order=1)
 
         # URLs for the views
+        self.course_overview_url = reverse(
+            'course_overview'
+        )
+        
         self.course_detail_url = reverse(
             'course_detail', args=[self.course.slug])
 
@@ -126,9 +130,10 @@ class CourseViewsTests(TestCase):
             'order': 1
         }
         response = self.client.post(self.course_add_url, data)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Course successfully added')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.course_overview_url)
         self.assertTrue(Course.objects.filter(slug='new-course').exists())
+
 
     @patch('courses.views.user_is_superuser', return_value=True)
     def test_course_add_invalid_form(self, mock_user_is_superuser):
@@ -250,7 +255,7 @@ class CourseViewsTests(TestCase):
         self.login_user()
         response = self.client.post(self.course_delete_url)
         self.assertEqual(response.status_code, 403)
-
+        
     @patch('courses.views.user_has_permission', return_value=True)
     def test_lesson_detail_view(self, mock_user_has_permission):
         """
@@ -330,8 +335,7 @@ class CourseViewsTests(TestCase):
         response = self.client.post(self.lesson_edit_url, data)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse(
-            'lesson_detail', args=[self.course.slug, self.lesson.slug]))
-
+            'course_detail', args=[self.course.slug]))
         self.lesson.refresh_from_db()
         self.assertEqual(self.lesson.title, 'Updated Lesson')
 
