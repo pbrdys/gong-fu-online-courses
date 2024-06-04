@@ -24,8 +24,26 @@
 </div>
 
 <div class="container-fluid px-5">
-    <!-- Render course content safely as HTML -->
-    {{ course.content | safe }}
+    <!-- Description section -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h2 class="title-2">Description</h2>
+            <p class="lead">
+                {{ course.description  |safe }}
+            </p>
+        </div>
+    </div>
+    
+    <!-- Content section -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h2 class="title-2">Content</h2>
+            <p class="lead">
+                {{ course.content | safe }}
+            </p>
+        </div>
+    </div>
+    
 </div>
 
 <!-- LESSONS / COURSE CURRICULUM -->
