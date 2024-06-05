@@ -207,7 +207,7 @@ The following navigation items are available on all pages:
 
 The navigation menu is displayed on all pages and drops down into a hamburger menu on smaller devices. This will allow users to view the site from any device and not take up too much space on mobile devices.
 
-![Navbar](doc/navigation.jpg)
+![Navbar](doc/user-interface/navigation.jpg)
 
 ``USER STORY - As an owner, I would like a home page so that people can view information on what my page has to offer``
 
@@ -218,28 +218,28 @@ Implementation:
 **Section - Hero**
 The home page contains a hero image that is illustrating the way of the warrior. This will immediately make it evident to the user, what the purpose of the website is.
 
-![Hero Image](doc/section-hero.jpg)
+![Hero Image](doc/user-interface/section-hero.jpg)
 
 **Section - Introduction**
 This section aims to motivate and guide the visitor to take the first step towards mastering ancient martial arts through those offered online courses. It contains a prominent registration button that invites to join and begin the training.
 
-![Introduction Image](doc/section-introduction.jpg)
+![Introduction Image](doc/user-interface/section-introduction.jpg)
 
 **Section - Offering**
 This section is crafted to give the visitor a comprehensive understanding of the valuable resources and support he will receive when he join our program.
 
-![Offering Image](doc/section-offering.jpg)
+![Offering Image](doc/user-interface/section-offering.jpg)
 
 **Section - Training**
 This section is designed to guide the visitor through a disciplined and rewarding training journey, ensuring a deep
 and enduring development of proficiency  in the art of Wudang Gong Fu.
 
-![Training Section](doc/section-training.jpg)
+![Training Section](doc/user-interface/section-training.jpg)
 
 **Section - Styles**
 This section provides a detailed introduction to the various styles of Wudang Kung Fu, each offering a unique path to mastering the art. Through understanding the distinct characteristics and philosophies of each style, the visitor can choose the path that best aligns with his martial arts journey.
 
-![Training Section](doc/section-styles.jpg)
+![Training Section](doc/user-interface/section-styles.jpg)
 
 
 ``USER STORY - As a developer, I need to create the footer with social media links and contact information``
@@ -250,17 +250,7 @@ Implementation:
 
 A footer has been added to the bottom of the site, this contains a Youtube and Facebook link so that users can follow the school on social media if they want to keep up to date with special offers not advertised on the website. These icons have aria-labels added to ensure users with assistive screen reading technology know what the purpose of the links are for. They also open in new tabs as they lead users away from the site.
 
-![Footer](doc/footer.jpg)
-
-``USER STORY - As a staff user, I want to be able to create a new course``
-
-Implementation:
-
-**Create New Course**
-
-A create course page was implemented to allow staff users to create new courses via the UI without having to use the backend admin panel. This will give staff the ability to quickly update courses when they have to make changes.
-
-![Create Course](doc/add-course.jpg)
+![Footer](doc/user-interface/footer.jpg)
 
 ``USER STORY - As a user, I would like to be able to view courses so that I can decide if I would like to register at this page to learn what it has to offer``
 
@@ -271,7 +261,17 @@ Implementation:
 A course overview has been implemented to allow users to see the current available courses.
 This is visible to all users regardless of logged in state as it is not user friendly to restrict core information from users to force them into signing up.
 
-![Course Overview](doc/course_overview.jpg)
+![Course Overview](doc/user-interface/course_overview.jpg)
+
+``USER STORY - As a staff user, I want to be able to create a new course``
+
+Implementation:
+
+**Create New Course**
+
+A create course page was implemented to allow staff users to create new courses via the UI without having to use the backend admin panel. This will give staff the ability to quickly update courses when they have to make changes.
+
+![Create Course](doc/user-interface/add-course.jpg)
 
 ``USER STORY - As a staff user, I want to be able to edit a course when updates are needed``
 ``USER STORY - As a staff user, I want to be able to delete a course when it is no longer used``
@@ -284,18 +284,7 @@ On the course overview are buttons implemented that allow the staff user to edit
 This buttons are only visible to staff member. Regular users are not allowed to perform those actions.
 
 
-![Edit / Delete Course](doc/edit_delete_course.jpg)
-
-
-``USER STORY - As a staff user, I want to be able to create a new lesson``
-
-Implementation:
-
-**Create New Lesson**
-
-A create lesson page was implemented to allow staff users to create new lessons via the UI without having to use the backend admin panel. This will give staff the ability to quickly update lessons when they have to make changes.
-
-![Create Lesson](doc/add-lesson.jpg)
+![Edit / Delete Course](doc/user-interface/edit_delete_course.jpg)
 
 ``As a authenticated user, I would like to see an overview of all lessons available within one course``
 
@@ -305,7 +294,17 @@ Implementation:
 
 Lessons can be views within a course. They are called the curriculum of that course. The user has to enter the course detail page to be able to view the curriculum. This area is only accessible for logged in users.
 
-![Curriculum](doc/curriculum.jpg)
+![Curriculum](doc/user-interface/curriculum.jpg)
+
+``USER STORY - As a staff user, I want to be able to create a new lesson``
+
+Implementation:
+
+**Create New Lesson**
+
+A create lesson page was implemented to allow staff users to create new lessons via the UI without having to use the backend admin panel. This will give staff the ability to quickly update lessons when they have to make changes.
+
+![Create Lesson](doc/user-interface/add-lesson.jpg)
 
 ``USER STORY - As a staff user, I want to be able to edit a lesson when updates are needed``
 ``USER STORY - As a staff user, I want to be able to delete a lesson when it is no longer used``
@@ -317,7 +316,18 @@ Implementation:
 On the course detail page are buttons next to every displayed lesson available. Those buttons allow staff user 
 to edit or delete a lesson. This buttons are only visible to staff user. Regular users are not allowed to perform those actions.
 
-![Edit / Delete Lesson](doc/edit_delete_lesson.jpg)
+![Edit / Delete Lesson](doc/user-interface/edit_delete_lesson.jpg)
+
+
+``As an owner, I would like a contact page so that people can contact me easily with questions about my offered courses``
+
+Implementation:
+
+**Contact**
+
+On the contact page is a form implemented, which allowes everyone to send a message to the owner of this page. The messages will be stored within the database.
+
+![Contact](doc/user-interface/contact.jpg)
 
 **Error Pages**
 
@@ -333,6 +343,9 @@ A 404 page has been implemented and will display if a user navigates to a broken
 
 The 404 page will allow the user to easily navigate back to the main website if they direct to a broken link / missing page, without the need  of the browsers back button.
 
+![404](doc/user-interface/404.jpg)
+
+
 ``USER STORY - As a developer, I need to implement a 403 error page to redirect unauthorised users to so that I can secure my views``
 
 Implementation:
@@ -342,7 +355,6 @@ Implementation:
 A 403 error page has been implemented to provide feedback to the user when they try to access unauthorized content. Users will be directed to this page if they alter the URL's and attempt to edit, delete or access pages that are restricted. 
 
 This covers:
-
 * View Course Detail - Only signed in users
 * Add Course - Only authorized to staff
 * Edit Course - Only authorized to staff
@@ -351,6 +363,8 @@ This covers:
 * Add Lesson - Only authorized to staff
 * Edit Lesson - Only authorized to staff
 * Delete Lesson - Only authorized to staff
+
+![403](doc/user-interface/403.jpg)
 
 ``USER STORY - As a developer, I need to implement a 500 error page to alert users when an internal server error occurs``
 
@@ -378,12 +392,13 @@ Favicon
     * A site wide favicon was implemented.
     * This provides an image in the tabs header to allow the user to easily identify the website if they have multiple tabs open.
 
-![Favicon](doc/favicon.jpg)
+![Favicon](doc/user-interface/favicon.jpg)
 
 ### Features Left To Implement
 - Show user the progress of each course, based on the finished lessons.
 - Currently, the student has access to all courses from the beginning. In the future, I would like to set some rules that grant the user access to specific courses based on their membership duration.
 - Implement a better and easier navigation within the courses and lessons.
+- Notification for the owner about new contact form messages.
 
 
 ## The-Skeleton-Plane
