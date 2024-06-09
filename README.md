@@ -1,21 +1,3 @@
-# SETUP Online-Course-Project
-
-1. Create a repo 
-Create repository from [template](https://github.com/Code-Institute-Org/ci-full-template)
-
-2. Install packages
-
-Install Django Python Package:
-´´´python
-    pip3 install Django~=4.2.1
-´´´
-
- Once the package is installed, add it to the requirements.txt file with the following command:
-´´´python
-    pip3 freeze --local > requirements.txt
-´´´
-
-
 # Gong Fu Online - Courses
 
 Gong Fu Online - Courses is a fictional Kung Fu School, which is offering teaching people online the art of martial arts. The app is a online course management system designed to allow staff to easily manage the courses and bookings. It allows users to simply register and login to this website and start to learn Kung Fu step by step. 
@@ -69,7 +51,7 @@ The site also aims to provide an easy way for the owner to manage all courses an
 
 This project was developed using agile methodologies by delivering small features incrementally.
 
-All projects were assigned to epics, prioritized under the labels, Must have, should have, could have. "Must have" stories were completed first, "should haves" and then finally "could haves". It was done this way to ensure that all core requirements were completed first to give the project a complete feel, with the nice to have features being added should there be capacity.
+All projects were assigned to epics, prioritized under the labels, Must have, should have, could have. They were story pointed according to complexity from 1 to 8. 1 equals very easy and 8 equals very hard. "Must have" stories were completed first, "should haves" and then finally "could haves". It was done this way to ensure that all core requirements were completed first to give the project a complete feel, with the nice to have features being added should there be capacity.
 
 The Kanban board was created using github projects and can be located [here](https://github.com/users/pbrdys/projects/2/) and can be viewed to see more information on the project cards. All stories except the documentation tasks have a full set of acceptance criteria in order to define the functionality that marks that story as complete.
 
@@ -225,22 +207,21 @@ The home page contains a hero image that is illustrating the way of the warrior.
 <hr>
 
 **Section - Introduction**
-This section aims to motivate and guide the visitor to take the first step towards mastering ancient martial arts through those offered online courses. It contains a prominent registration button that invites to join and begin the training.
+This section aims to motivate and guide the visitor to take the first step towards mastering ancient martial arts through those offered online courses. It contains a prominent registration button that invites to join and begin the training. 
 
 ![Introduction Image](doc/user-interface/section-introduction.jpg)
 
 <hr>
 
 **Section - Offering**
-This section is crafted to give the visitor a comprehensive understanding of the valuable resources and support he will receive when he join our program.
+This section is crafted to give the visitor a comprehensive understanding of the valuable resources and support they will receive when they join our program.
 
 ![Offering Image](doc/user-interface/section-offering.jpg)
 
 <hr>
 
 **Section - Training**
-This section is designed to guide the visitor through a disciplined and rewarding training journey, ensuring a deep
-and enduring development of proficiency  in the art of Wudang Gong Fu.
+This section is designed to guide the visitor through a disciplined and rewarding training journey, ensuring a deep and enduring development of proficiency in the art of Wudang Gong Fu. The training program is structured into three levels of difficulty, each designed to be completed over approximately one year. The training emphasizes a well-founded education in martial arts, focusing on fundamental skills and progressive development.
 
 ![Training Section](doc/user-interface/section-training.jpg)
 
@@ -402,6 +383,8 @@ Implementation:
 
 A 500 error page has been displayed to alert users when an internal server error occurs. The message relays to users that the problem is on our end, not theirs.
 
+![500](doc/user-interface/500.jpg)
+
 **Base Setup User Stories**
 
 The following stories were implemented in order to set up a base structure for all the HTML pages and the core installations and configurations needed to run the application. While these do not show as individual features, they were stories completed that were needed to implement all of the stories above.
@@ -548,9 +531,7 @@ The images for the courses and lessons are pictures of myself and students / fri
 **Python Modules Used**
 
 * Django Class based views (ListView, UpdateView, DeleteView, CreateView) - Used for the classes to create, read, update and delete
-* Mixins (LoginRequiredMixin, UserPassesTestMixin) - Used to enforce login required on views and test user is authorized to perform actions
 * messages - Used to pass messages to the toasts to display feedback to the user upon actions
-* timedelta, date - Date was used in order to search for objects by date and timedelta for searching date ranges
 
 **External Python Modules**
 
@@ -620,6 +601,18 @@ The site was deployed to Heroku. The steps to deploy are as follows:
 The app should now be deployed.
 
 The live link can be found here: [Live Site](https://pbrdys-gong-fu-online-courses-a434364e81b0.herokuapp.com/)
+
+### Run Locally
+
+Navigate to the GitHub Repository you want to clone to use locally:
+
+- Click on the code drop down button
+- Click on HTTPS
+- Copy the repository link to the clipboard
+- Open your IDE of choice (git must be installed for the next steps)
+- Type git clone copied-git-url into the IDE terminal
+
+The project will now have been cloned on your local machine for use.
 
 ## Credits 
 * The [Website logo](static/images/warrior-logo.png) and the [Hero Image](static/images/hero-homepage.jpg) were made by a friend of mine who is a graphics designer.

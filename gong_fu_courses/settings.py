@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-_7)1fbf-fq@nwrz$lw6bipgutntfbw1=hhr#u7avf^ipkkrcib'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     'home',
     'contact',
     'courses',
@@ -56,6 +57,28 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# AllAuth settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_USERNAME_REQUIRED = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -151,7 +174,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
