@@ -6,21 +6,22 @@
     <div class="row text-center mt-5">
         <div class="col-md-12">
             <!-- Title displaying the course ID being edited -->
-            <h1 class="title-1">Edit Course</h1>
+            <h1 class="title-1">Confirm Lesson Deletion</h1>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center text-center">
         <div class="col-sm-12 col-md-8">
-            <!-- Form for editing the course -->
-            <form id="courseEditForm" method="post" class="form" enctype="multipart/form-data">
-                <!-- Render the course edit form using crispy forms -->
-                {{ course_edit_form | crispy }}
-                <!-- CSRF token for security -->
+            <!-- Form for deleting the course -->
+            <form id="courseDeleteForm" method="post">
                 {% csrf_token %} <!-- CSRF_ALLOWED_HOSTS -->
+                <p>Are you sure, you want to delete the lesson 
+                    <span style="font-weight: bold">"{{lesson.title}}"</span>?
+                    <br>This can not be undone.
+                </p>
                 <!-- Submit button for the form -->
                 <button id="submitButton" type="submit"
-                class="btn-warrior btn-warrior-color-green">Submit</button>
-                <a href="{% url 'course_overview' %}" id="cancleButton"
+                class="btn-warrior btn-warrior-color-red">Delete</button>
+                <a href="{% url 'course_detail' course.slug %}" id="cancleButton"
                 class="btn-warrior btn-warrior-color-grey">Cancle</a>
             </form>
         </div>

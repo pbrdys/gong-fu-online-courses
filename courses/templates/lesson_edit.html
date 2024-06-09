@@ -2,13 +2,17 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+<div class="container-fluid back-to-course-navbar">
+    <a href="{% url 'course_detail' course.slug %}" class="warrior-url">&laquo; back to {{ course.title }}</a>
+</div>
+
 <!-- Container for the main content -->
 <div class="container-fluid">
     <!-- Row for the page title -->
     <div class="row text-center mt-5">
         <div class="col-md-12">
             <!-- Display the title with the lesson ID -->
-            <h1 class="title-1">EDIT LESSON</h1>
+            <h1 class="title-1">Edit Lesson</h1>
         </div>
     </div>
     <!-- Row for the form -->
@@ -23,6 +27,8 @@
                 <!-- Submit button for the form -->
                 <button id="submitButton" type="submit"
                 class="btn-warrior btn-warrior-color-green">Submit</button>
+                <a href="{% url 'course_detail' course.slug %}" id="cancleButton"
+                class="btn-warrior btn-warrior-color-grey">Cancle</a>
             </form>
         </div>
     </div>

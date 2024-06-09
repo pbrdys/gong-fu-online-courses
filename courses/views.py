@@ -156,11 +156,14 @@ def course_delete(request, course_id):
     """
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
-
-        course.delete()
-        messages.add_message(request, messages.SUCCESS, 'Course deleted!')
-
-        return HttpResponseRedirect(reverse("course_overview"))
+        if request.method == "POST":
+            course.delete()
+            messages.add_message(request, messages.SUCCESS, 'Course deleted!')
+            return HttpResponseRedirect(reverse('course_overview'))
+        else:
+            return render(
+            request, 'course_delete.html',
+            {'course': course})
     else:
         return access_denied(request)
 
@@ -293,11 +296,20 @@ def lesson_delete(request, lesson_id, course_slug):
         Http404: If the requested lesson does not exist.
     """
     if user_is_superuser(request.user):
+        course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, pk=lesson_id)
-
-        lesson.delete()
-        messages.add_message(request, messages.SUCCESS, 'Lesson deleted!')
-
-        return redirect('course_detail', slug=course_slug)
+        if request.method == "POST":
+            lesson.delete()
+            messages.add_message(request, messages.SUCCESS, 'Lesson deleted!')
+            return redirect('course_detail', slug=course_slug)
+        else:
+            return render(
+            request,
+            'lesson_delete.html',
+            {
+                'lesson': lesson,
+                'course': course
+            }
+        )
     else:
         return access_denied(request)

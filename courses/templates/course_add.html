@@ -6,7 +6,7 @@
     <!-- Title Row -->
     <div class="row text-center mt-5">
         <div class="col-md-12">
-            <h1 class="title-1">ADD NEW COURSE</h1>
+            <h1 class="title-1">Add New Course</h1>
         </div>
     </div>
     
@@ -19,6 +19,8 @@
                 {% csrf_token %} <!-- CSRF token for security -->
                 <button id="submitButton" type="submit"
                 class="btn-warrior btn-warrior-color-green">Submit</button> <!-- Submit Button -->
+                <a href="{% url 'course_overview' %}" id="cancleButton"
+                class="btn-warrior btn-warrior-color-grey">Cancle</a>
             </form>
         </div>
     </div>

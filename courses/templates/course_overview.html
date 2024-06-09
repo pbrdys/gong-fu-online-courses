@@ -60,13 +60,16 @@
                             {% if user.is_superuser %}
                                 <div class="ml-1">
                                     <!-- Edit Course -->
-                                    <a href='edit_course/{{ course.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' course_id="{{ course.id }}" title="Edit Course">
+                                    <a href='edit_course/{{ course.id }}' class='btn-warrior btn-warrior-color-yellow ml-1 btn-edit' title="Edit Course">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <!-- Delete Course -->
-                                    <button class="btn-warrior btn-warrior-color-red btn-delete-course" title="Delete Course" course_id="{{ course.id }}">
+                                    <a href='delete_course/{{ course.id }}' class='btn-warrior btn-warrior-color-red btn-delete-course' title="Delete Course">
                                         <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    </a>
+                                    {% comment %} <button class="btn-warrior btn-warrior-color-red btn-delete-course" title="Delete Course" course_id="{{ course.id }}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button> {% endcomment %}
                                 </div>
                             {% endif %}
                         </div>
@@ -102,31 +105,6 @@
             {% endif %}
         </div>
     </div>
-
-    <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteCourseModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete course?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete your course? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a id="deleteCourseConfirm" href="#" class="btn btn-danger">Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 <!-- Content ends here -->
 {% endblock content %}
-
-{% block extras %}
-    <!-- Include the course.js script -->
-    <script src="{% static 'js/course.js' %}"></script>
-{% endblock %}

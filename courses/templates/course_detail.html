@@ -84,12 +84,9 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- Button to delete the lesson -->
-                            <button class="btn-warrior btn-warrior-color-red btn-delete-lesson" title="Delete Lesson"
-                                course_slug="{{ course.slug }}"
-                                lesson_slug="{{ lesson.slug }}"
-                                lesson_id="{{ lesson.id }}">
+                            <a href="{% url 'lesson_delete' course.slug lesson.id %}" class="btn-warrior btn-warrior-color-red btn-delete-lesson" title="Delete Lesson">
                                 <i class="fas fa-trash-alt"></i>
-                            </button>
+                            </a>
                             {% endif %}
                         </div>
                     </div>
@@ -100,31 +97,4 @@
             {% endfor %}
         </div>
     </div>
-
-    <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteLessonModal" tabindex="-1"
-    aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete lesson?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete your lesson? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a id="deleteLessonConfirm" href="#" class="btn btn-danger">Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock content %}
-
-{% block extras %}
-    <!-- Include JavaScript for handling lesson deletion -->
-    <script src="{% static 'js/lesson.js' %}"></script>
-{% endblock %}
