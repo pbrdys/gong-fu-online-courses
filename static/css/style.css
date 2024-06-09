@@ -516,6 +516,11 @@ body {
     margin-bottom: 5%;
 }
 
+/* errorlist for contact form */ 
+.errorlist {
+    color: var(--color-red) !important;
+}
+
 #id_name {
     width: 75%;
 }
