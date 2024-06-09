@@ -20,7 +20,7 @@ class course_overview(generic.ListView):
     """
     queryset = Course.objects.all()
     template_name = "course_overview.html"
-    paginate_by = 10
+    paginate_by = 8
 
 
 @login_required
