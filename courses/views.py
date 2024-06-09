@@ -15,9 +15,9 @@ class course_overview(generic.ListView):
     View for displaying an overview of all courses.
 
     Attributes:
-        queryset (QuerySet): Queryset of all Course objects.
-        template_name (str): The name of the template used for rendering the view.
-    """ 
+        queryset: Queryset of all Course objects.
+        template_name: The name of the template used for rendering the view.
+    """
     queryset = Course.objects.all()
     template_name = "course_overview.html"
     paginate_by = 10
@@ -116,7 +116,10 @@ def course_edit(request, course_id):
     if user_is_superuser(request.user):
         course = get_object_or_404(Course, pk=course_id)
         if request.method == "POST":
-            course_form = CourseForm(data=request.POST,  files=request.FILES, instance=course)
+            course_form = CourseForm(
+                data=request.POST,
+                files=request.FILES,
+                instance=course)
 
             if course_form.is_valid():
                 course_form.save()
@@ -162,8 +165,10 @@ def course_delete(request, course_id):
             return HttpResponseRedirect(reverse('course_overview'))
         else:
             return render(
-            request, 'course_delete.html',
-            {'course': course})
+                request,
+                'course_delete.html',
+                {'course': course})
+
     else:
         return access_denied(request)
 
@@ -187,7 +192,13 @@ def lesson_detail(request, course_slug, lesson_slug):
     if user_has_permission(request.user):
         course = get_object_or_404(Course, slug=course_slug)
         lesson = get_object_or_404(Lesson, slug=lesson_slug, course=course)
-        return render(request, 'lesson_detail.html', {'lesson': lesson, 'course': course})
+        return render(
+            request,
+            'lesson_detail.html',
+            {
+                'lesson': lesson,
+                'course': course
+            })
     else:
         return access_denied(request)
 
@@ -199,7 +210,7 @@ def lesson_add(request, course_slug):
 
     Args:
         request (HttpRequest): The HTTP request object.
-        course_slug (str): The slug of the course to which the lesson will be added.
+        course_slug (str): The slug of the course
 
     Returns:
         HttpResponse: Rendered lesson add template.
@@ -287,7 +298,7 @@ def lesson_delete(request, lesson_id, course_slug):
     Args:
         request (HttpRequest): The HTTP request object.
         lesson_id (int): The ID of the lesson to be deleted.
-        course_slug (str): The slug of the course from which the lesson will be deleted.
+        course_slug (str): The slug of the course
 
     Returns:
         HttpResponseRedirect: Redirects to the course detail page.
@@ -304,12 +315,12 @@ def lesson_delete(request, lesson_id, course_slug):
             return redirect('course_detail', slug=course_slug)
         else:
             return render(
-            request,
-            'lesson_delete.html',
-            {
-                'lesson': lesson,
-                'course': course
-            }
-        )
+                request,
+                'lesson_delete.html',
+                {
+                    'lesson': lesson,
+                    'course': course
+                }
+            )
     else:
         return access_denied(request)
