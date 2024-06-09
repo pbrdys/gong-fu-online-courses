@@ -48,3 +48,7 @@ class LessonForm(forms.ModelForm):
         fields = (
             'title', 'slug', 'video_url',
             'description', 'recommendation', 'order')
+        
+        labels = {
+            "video_url" : "Video Url - Must be embed link"
+        }

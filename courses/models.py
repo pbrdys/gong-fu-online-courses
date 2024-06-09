@@ -69,7 +69,7 @@ class Lesson(models.Model):
     )
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
-    video_url = models.URLField(max_length=200, blank=True, null=True)
+    video_url = models.URLField(max_length=200, blank=True, null=True, default="https://www.youtube.com/embed/ji7J3GwhfdU?si=aGjz83D0b7bqvMQj")
     description = models.TextField(blank=True, null=True)
     recommendation = models.TextField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
