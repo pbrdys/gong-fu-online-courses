@@ -511,8 +511,6 @@ The images for the courses and lessons are pictures of myself and students / fri
   - The structure of the Website was developed using HTML as the main language.
 - CSS
   - The Website was styled using custom CSS in an external file.
-- JavaScript
-  - JavaScript was used to implement the delete course and delete lesson functionality.
 - Python
   - Python was the main programming language used for the application using the Django Framework.
 - Visual Studio Code
